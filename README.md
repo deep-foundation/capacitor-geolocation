@@ -1,23 +1,44 @@
-[![npm](https://img.shields.io/npm/v/@deep-foundation/capacitor-geolocation.svg)](https://www.npmjs.com/package/<PACKAGE_NAME>) 
-[![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#<REPOSITORY_URL>) 
+[![npm](https://img.shields.io/npm/v/@deep-foundation/capacitor-geolocation.svg)](https://www.npmjs.com/package/@deep-foundation/capacitor-geolocation)
+[![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/deep-foundation/capacitor-geolocation)
 [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label&color=purple)](https://discord.gg/deep-foundation)
 
-npm package with typescript support that will help you to manage your deep package
+Provides links based on [`@capacitor/geolocation`](https://www.npmjs.com/package/@capacitor/geolocation) and typescript library to simplify integration with this deep package
 
-## Installation and setup
+# Table Of Contents
+<!-- TABLE_OF_CONTENTS_START -->
+<!-- TABLE_OF_CONTENTS_END -->
 
-### Automatically
+# Prerequisitions
 
-Use [`@deep-foundation/create-typescript-npm-package`](https://www.npmjs.com/package/@deep-foundation/create-typescript-npm-package)
+- Install this package in your deep by using npm-packager
+- Give permissions to this package
 
-### Manually
-- Replace `<PACKAGE_NAME>` in files to your package name
-- Replace `<DESCRIPTION>` in files to your package description
-- Replace `<REPOSITORY_URL>` in files to your package repository url
+# Usage
 
-## Usage
+1. Insert a link of type [`Geolocation`]
+2. Change its object value to the object with properties described in [Geolocation Object Value](#geolocation-object-value) and this update will be handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Geolocation`] object value as links
+   or  
+   Insert a link of any type with any property name from [Geolocation Object Value](#geolocation-object-value) from [`Geolocation`] link to the same [`Geolocation`] link and set its value to the value of the corresponding property of the [`Geolocation`] object value. For example insert [`GeolocationAcceleration`] from [`Geolocation`] to [`Geolocation`] and [`GeolocationAccelerationX`] from [`GeolocationAcceleration`] to [`GeolocationAcceleration`]
 
-Export anything you want to let users of your package use your package programatically by using Javascript.  
-Use `npm run npm-pull` to pull data from npm. This should be used as often as possible because you or your teammate could have published a new version of the package by using deep's `npm-packager` package  and you can overwrite those changes if you do not pull them before  
-Use  `npm run npm-release` to release new version. If you do not pass argument the version will be patched. Note that this script does not publish your package because github action will publish your package when you push your changes after using this command
-Note that these scripts are from [`@deep-foundation/npm-automation`](https://www.npmjs.com/package/@deep-foundation/npm-automation) so you can find more information there
+# Geolocation Object Value
+
+The [`Geolocation`] link can have object value.  
+No one field is required. You can add any fields as you want. Only the fields that are supported by this package will be represented as links  
+- [**Supported fields can be found in the `Geolocation` interface**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html)  
+- [**Example of Geolocation Object Value**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html#md:geolocation-info-example)
+
+# Update Handling
+
+[`Geolocation`] updates are handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Geolocation`] object value as links
+
+# Library
+## Library Usage
+See [Documentation] for examples and API
+
+# Contribution
+
+Feel free to contribute. Please fork the repository and submit a pull request for any bugs, improvements, or features.
+
+
+[`Position`]: https://deep-foundation.github.io/capacitor-geolocation/classes/Package.html#Position
+[Documentation]: https://deep-foundation.github.io/capacitor-geolocation/

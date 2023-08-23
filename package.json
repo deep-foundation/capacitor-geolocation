@@ -2,7 +2,7 @@
   "name": "@deep-foundation/capacitor-geolocation",
   "keywords": [],
   "version": "0.0.2",
-  "description": "<DESCRIPTION>",
+  "description": "A deep package that provides links based on @capacitor/geolocation and typescript library to simplify integration with this deep package",
   "repository": {
     "type": "git",
     "url": "https://github.com/deep-foundation/capacitor-geolocation"
