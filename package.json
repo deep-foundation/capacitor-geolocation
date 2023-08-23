@@ -5,7 +5,7 @@
   "description": "<DESCRIPTION>",
   "repository": {
     "type": "git",
-    "url": "<REPOSITORY_URL>"
+    "url": "https://github.com/deep-foundation/capacitor-geolocation"
   },
   "type": "module",
   "scripts": {
