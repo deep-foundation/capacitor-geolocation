@@ -6,5 +6,6 @@ async function main() {
   await generateDocumentation({
     generateCliAppsHelpInReadmeOptions: null,
     generateUsageWaysOfNpmCliAppsInMarkdownFormatOptions: null,
+    generateTableOfContentsForMarkdownOptions: null
   })
 };
