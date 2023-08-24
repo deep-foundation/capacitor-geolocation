@@ -6,6 +6,15 @@ Provides links based on [`@capacitor/geolocation`](https://www.npmjs.com/package
 
 # Table Of Contents
 <!-- TABLE_OF_CONTENTS_START -->
+- [Table Of Contents](#table-of-contents)
+- [Prerequisitions](#prerequisitions)
+- [Usage](#usage)
+- [Geolocation Object Value](#geolocation-object-value)
+- [Update Handling](#update-handling)
+- [Library](#library)
+  - [Library Usage](#library-usage)
+- [Contribution](#contribution)
+
 <!-- TABLE_OF_CONTENTS_END -->
 
 # Prerequisitions
