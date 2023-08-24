@@ -15,21 +15,21 @@ Provides links based on [`@capacitor/geolocation`](https://www.npmjs.com/package
 
 # Usage
 
-1. Insert a link of type [`Geolocation`]
-2. Change its object value to the object with properties described in [Geolocation Object Value](#geolocation-object-value) and this update will be handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Geolocation`] object value as links
+1. Insert a link of type [`Position`]
+2. Change its object value to the object with properties described in [Geolocation Object Value](#geolocation-object-value) and this update will be handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Position`] object value as links
    or  
-   Insert a link of any type with any property name from [Geolocation Object Value](#geolocation-object-value) from [`Geolocation`] link to the same [`Geolocation`] link and set its value to the value of the corresponding property of the [`Geolocation`] object value. For example insert [`GeolocationAcceleration`] from [`Geolocation`] to [`Geolocation`] and [`GeolocationAccelerationX`] from [`GeolocationAcceleration`] to [`GeolocationAcceleration`]
+   Insert a link of any type with any property name from [Geolocation Object Value](#geolocation-object-value) from [`Position`] link to the same [`Position`] link and set its value to the value of the corresponding property of the [`Position`] object value. For example insert [`GeolocationAcceleration`] from [`Position`] to [`Position`] and [`GeolocationAccelerationX`] from [`GeolocationAcceleration`] to [`GeolocationAcceleration`]
 
 # Geolocation Object Value
 
-The [`Geolocation`] link can have object value.  
+The [`Position`] link can have object value.  
 No one field is required. You can add any fields as you want. Only the fields that are supported by this package will be represented as links  
 - [**Supported fields can be found in the `Geolocation` interface**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html)  
 - [**Example of Geolocation Object Value**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html#md:geolocation-info-example)
 
 # Update Handling
 
-[`Geolocation`] updates are handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Geolocation`] object value as links
+[`Position`] updates are handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Position`] object value as links
 
 # Library
 ## Library Usage
