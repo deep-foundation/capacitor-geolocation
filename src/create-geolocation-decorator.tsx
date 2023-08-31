@@ -170,6 +170,13 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
           }
         }
       }, [])
+    },
+    WithComponentWatch(options: WithComponentWatchOptions) {
+      const { children } = options;
+    
+      this.usePositionWatch(options)
+    
+      return children ?? null;
     }
   }, deep);
 }
@@ -212,3 +219,6 @@ export type CheckPermissionsResult = ReturnType<GeolocationPlugin['checkPermissi
 export type RequestPermissionsResult = ReturnType<GeolocationPlugin['requestPermissions']>
 
 export type UsePositionWatchOptions = WatchPositionOptions;
+export type WithComponentWatchOptions = UsePositionWatchOptions & {
+  children?: JSX.Element|null
+}
