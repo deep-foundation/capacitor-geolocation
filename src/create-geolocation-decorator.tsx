@@ -4,6 +4,7 @@ import { ClearWatchOptions, Geolocation, Position, PositionOptions } from '@capa
 import { createSerialOperation } from '@deep-foundation/deeplinks/imports/gql/index.js';
 import debug from 'debug';
 import { GeolocationPlugin } from '@capacitor/geolocation';
+import { useEffect, useState } from 'react';
 
 /**
  * 
@@ -151,6 +152,24 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
       const permissionsStatus = await Geolocation.requestPermissions()
       log({permissionsStatus})
       return permissionsStatus
+    },
+    usePositionWatch(options: UsePositionWatchOptions) {
+      const log = debug(`@deep-foundation/capacitor-geolocation:${this.usePositionWatch.name}`);
+      log({options})
+      const [watchId, setWatchId] = useState<string|undefined>(undefined)
+      
+      useEffect(() => {
+        this.watchPosition(options).then((watchId) => {
+          log({watchId})
+          setWatchId(watchId)
+        })
+    
+        return () => {
+          if (watchId) {
+            this.clearWatch({id: watchId})
+          }
+        }
+      }, [])
     }
   }, deep);
 }
@@ -168,6 +187,7 @@ export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepCl
   clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
   checkPermissions(): CheckPermissionsResult
   requestPermissions(): RequestPermissionsResult
+  usePositionWatch(options: UsePositionWatchOptions): void
 }
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
@@ -190,3 +210,5 @@ export type MakeUpdateUpdatePositionOperationsResult = Promise<Array<SerialOpera
 
 export type CheckPermissionsResult = ReturnType<GeolocationPlugin['checkPermissions']>
 export type RequestPermissionsResult = ReturnType<GeolocationPlugin['requestPermissions']>
+
+export type UsePositionWatchOptions = WatchPositionOptions;
