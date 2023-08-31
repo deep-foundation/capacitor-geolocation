@@ -18,6 +18,8 @@ export {
   UsePositionOptions,
   UsePositionResult,
   UsePositionWatchOptions,
-  WithComponentWatchOptions
+  WithComponentWatchOptions,
+  ApplyRequiredPackagesInMinilnksResult,
+  ClearWatchResult
 } from './create-geolocation-decorator.js'
 export { Package } from './package.js'
