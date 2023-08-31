@@ -15,7 +15,7 @@ const anotherDeepDecorator = createAnotherDecorator(deep); // Note that this ste
 const geolocationDeepDecorator = createAdditionalFeatureDecorator(anotherDeepDecorator);
 ```
  */
-export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T) {
+export function createGeolocationDecorator<TDeepClient extends DeepClientInstance>(deep: TDeepClient) {
   const log = debug(`@deep-foundation/capacitor-geolocation:${createGeolocationDecorator.name}`);
   log({ deep })
   const _package = new Package({ deep });
@@ -155,7 +155,7 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
   }, deep);
 }
 
-export type GeolocationDecorator<T extends DeepClientInstance = DeepClientInstance> = T & {
+export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepClientInstance> = TDeepClient & {
   capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
   applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
