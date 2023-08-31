@@ -133,7 +133,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
       return positionLink.value?.value;
     },
     async watchPosition(options: WatchPositionOptions): WatchPositionResult {
-      const { containerLinkId, watchPositionOptions } = options;
+      const { containerLinkId, watchPositionOptions = {}} = options;
       return await Geolocation.watchPosition(watchPositionOptions, async (position, error) => {
         if (error) {
           throw error;
@@ -226,7 +226,7 @@ export type MakePositionInsertOperationsResult = Promise<Array<SerialOperation>>
 export type GetPositionOptions = { linkId: number }
 export type GetPositionResult = Promise<Partial<Position> | undefined>
 
-export type WatchPositionOptions = { watchPositionOptions: PositionOptions, containerLinkId?: number }
+export type WatchPositionOptions = { watchPositionOptions?: PositionOptions, containerLinkId?: number }
 export type WatchPositionResult = ReturnType<GeolocationPlugin['watchPosition']>
 
 export type UpdatePositionOptions = { position: Position | null, id: number }
