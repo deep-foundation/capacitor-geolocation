@@ -100,7 +100,7 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
         operations
       })
     },
-    async makeUpdatePositionOperations(options: UpdatePositionOptions): MakePositionInsertOperationsResult {
+    async makeUpdatePositionOperations(options: MakeUpdateUpdatePositionOperationsOptions): MakeUpdateUpdatePositionOperationsResult {
       const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.makeUpdatePositionOperations.name}`);
       log({ options })
 
@@ -143,18 +143,18 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
   }, deep);
 }
 
-export type GeolocationDecorator = ReturnType<typeof createGeolocationDecorator>
-
-// export type GeolocationDecorator<T extends DeepClientInstance = DeepClientInstance> = T & {
-//   capacitorGeolocationPackage: Package,
-//   requiredPackagesInMinilinksToApply: Array<string>
-//   applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
-//   insertPosition(options: InsertPositionOptions): InsertPositionResult
-//   makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
-//   getPosition(options: GetPositionOptions): GetPositionResult
-//   watchPosition(options: WatchPositionOptions): WatchPositionResult
-//   clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
-// }
+export type GeolocationDecorator<T extends DeepClientInstance = DeepClientInstance> = T & {
+  capacitorGeolocationPackage: Package,
+  requiredPackagesInMinilinksToApply: Array<string>
+  applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
+  insertPosition(options: InsertPositionOptions): InsertPositionResult
+  updatePosition(options: UpdatePositionOptions): UpdatePositionResult
+  makeUpdatePositionOperations(options: MakeUpdateUpdatePositionOperationsOptions): MakeUpdateUpdatePositionOperationsResult
+  makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
+  getPosition(options: GetPositionOptions): GetPositionResult
+  watchPosition(options: WatchPositionOptions): WatchPositionResult
+  clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
+}
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
 export type InsertPositionResult = ReturnType<DeepClientInstance['serial']>
@@ -170,3 +170,6 @@ export type WatchPositionResult = ReturnType<GeolocationPlugin['watchPosition']>
 
 export type UpdatePositionOptions = { position: Position | null, id: number }
 export type UpdatePositionResult = ReturnType<DeepClientInstance['serial']>
+
+export type MakeUpdateUpdatePositionOperationsOptions = { position: Position | null, id: number }
+export type MakeUpdateUpdatePositionOperationsResult = Promise<Array<SerialOperation>>
