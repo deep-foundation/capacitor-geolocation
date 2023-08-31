@@ -16,6 +16,7 @@ import { BoolExpLink } from '@deep-foundation/deeplinks/imports/client_types';
 const deep = new DeepClient({token: ''});
 const anotherDeepDecorator = createAnotherDecorator(deep); // Note that this step is optional and showed only to demonstrate that you can create a decorator from another decorator and have a chain of decorators
 const geolocationDeepDecorator = createAdditionalFeatureDecorator(anotherDeepDecorator);
+await geolocationDeepDecorator.applyRequiredPackagesInMinilinks();
 ```
  */
 export function createGeolocationDecorator<TDeepClient extends DeepClientInstance>(deep: TDeepClient) {
