@@ -4,7 +4,7 @@ import { Package } from "../../package";
 import { WatchPositionOptions, createGeolocationDecorator } from "../../create-geolocation-decorator";
 import { useEffect, useState } from "react";
 
-export function usePositionWatch(options: UseGeolocationGetOptions) {
+export function usePositionWatch(options: UsePositionWatchOptions) {
   const log = debug(`@deep-foundation/capacitor-geolocation:${usePositionWatch.name}`);
   const { deep, watchPositionOptions} = options;
   const decoratedDeep = createGeolocationDecorator(deep);
@@ -24,7 +24,7 @@ export function usePositionWatch(options: UseGeolocationGetOptions) {
   }, [])
 }
 
-export interface UseGeolocationGetOptions {
+export interface UsePositionWatchOptions {
   deep: DeepClient;
   deviceLinkId: number;
   watchPositionOptions: WatchPositionOptions;
