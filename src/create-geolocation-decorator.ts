@@ -1,6 +1,6 @@
 import { DeepClientInstance, SerialOperation } from '@deep-foundation/deeplinks/imports/client.js'
 import { Package } from './package';
-import { Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
+import { ClearWatchOptions, Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
 import { createSerialOperation } from '@deep-foundation/deeplinks/imports/gql/index.js';
 import debug from 'debug';
 import { GeolocationPlugin } from '@capacitor/geolocation';
@@ -104,13 +104,17 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
 
       return positionLink.value?.value;
     },
-    async watchPosition(options: { watchPositionOptions: PositionOptions }): WatchPositionResult {
-      return await Geolocation.watchPosition(options.watchPositionOptions, async (position, error) => {
+    async watchPosition(options: WatchPositionOptions): WatchPositionResult {
+      const { containerLinkId, watchPositionOptions } = options;
+      return await Geolocation.watchPosition(watchPositionOptions, async (position, error) => {
         if (error) {
           throw error;
         }
-        await this.insertPosition({ position })
+        await this.insertPosition({ position, containerLinkId })
       })
+    },
+    async clearWatch(options: ClearWatchOptions) {
+      await Geolocation.clearWatch(options)
     }
   }, deep);
 }
@@ -123,6 +127,7 @@ export type GeolocationDecorator<T extends DeepClientInstance> = T & {
   makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
   getPosition(options: GetPositionOptions): GetPositionResult
   watchPosition(options: WatchPositionOptions): WatchPositionResult
+  clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
 }
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
@@ -134,5 +139,5 @@ export type MakePositionInsertOperationsResult = Promise<Array<SerialOperation>>
 export type GetPositionOptions = { linkId: number }
 export type GetPositionResult = Promise<Partial<Position> | undefined>
 
-export type WatchPositionOptions = { watchPositionOptions: PositionOptions }
-export type WatchPositionResult = Promise<ReturnType<GeolocationPlugin['watchPosition']>>
+export type WatchPositionOptions = { watchPositionOptions: PositionOptions, containerLinkId?: number }
+export type WatchPositionResult = ReturnType<GeolocationPlugin['watchPosition']>
