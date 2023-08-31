@@ -145,17 +145,6 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
 
 export type GeolocationDecorator = ReturnType<typeof createGeolocationDecorator>
 
-// export type GeolocationDecorator<T extends DeepClientInstance = DeepClientInstance> = T & {
-//   capacitorGeolocationPackage: Package,
-//   requiredPackagesInMinilinksToApply: Array<string>
-//   applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
-//   insertPosition(options: InsertPositionOptions): InsertPositionResult
-//   makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
-//   getPosition(options: GetPositionOptions): GetPositionResult
-//   watchPosition(options: WatchPositionOptions): WatchPositionResult
-//   clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
-// }
-
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
 export type InsertPositionResult = ReturnType<DeepClientInstance['serial']>
 
