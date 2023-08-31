@@ -94,13 +94,10 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
 
       return [operation]
     },
-    async updatePosition(options: InsertPositionOptions): UpdatePositionResult {
-      return await deep.update({
-        link_id: options.id
-      }, {
-        value: options.position
-      }, {
-        table: 'objects'
+    async updatePosition(options: UpdatePositionOptions): UpdatePositionResult {
+      const operations = await this.makeUpdatePositionOperations(options);
+      return await deep.serial({
+        operations
       })
     },
     async makeUpdatePositionOperations(options: UpdatePositionOptions): MakePositionInsertOperationsResult {
