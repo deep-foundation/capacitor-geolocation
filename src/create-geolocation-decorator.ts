@@ -166,6 +166,8 @@ export type GeolocationDecorator<T extends DeepClientInstance = DeepClientInstan
   getPosition(options: GetPositionOptions): GetPositionResult
   watchPosition(options: WatchPositionOptions): WatchPositionResult
   clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
+  checkPermissions(): CheckPermissionsResult
+  requestPermissions(): RequestPermissionsResult
 }
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
