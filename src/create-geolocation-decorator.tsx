@@ -212,6 +212,8 @@ export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepCl
   checkPermissions(): CheckPermissionsResult
   requestPermissions(): RequestPermissionsResult
   usePositionWatch(options: UsePositionWatchOptions): void
+  WithComponentWatch(options: WithComponentWatchOptions): JSX.Element|null
+  usePosition(options: UsePositionOptions): UsePositionResult
 }
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
