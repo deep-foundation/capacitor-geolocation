@@ -22,6 +22,8 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
   log({ _package })
   return Object.assign({
     ...deep,
+    "@deep-foundation/capacitor-geolocation": _package,
+    capacitorGeolocationPackage: _package,
     requiredPackagesInMinilinksToApply: [
       ...('requiredPackagesInMinilinksToApply' in deep ? deep.requiredPackagesInMinilinksToApply as Array<string> : []),
       _package.name,
@@ -59,7 +61,7 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
       const { position, containerLinkId, id } = options;
       const insertOperations = await this.makePositionInsertOperations({ position: position, containerLinkId: containerLinkId, id: id });
       log({ insertOperations })
-      const serialResult = await this.deep.serial({ operations: insertOperations })
+      const serialResult = await this.serial({ operations: insertOperations })
       log({ serialResult })
 
       return serialResult;
@@ -110,10 +112,11 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
         await this.insertPosition({ position })
       })
     }
-  }, _package);
+  }, deep);
 }
 
-export type GeolocationDecorator<T extends DeepClientInstance> = T & Package & {
+export type GeolocationDecorator<T extends DeepClientInstance> = T & {
+  capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
   applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
   insertPosition(options: InsertPositionOptions): InsertPositionResult
