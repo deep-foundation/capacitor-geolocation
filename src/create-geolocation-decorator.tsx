@@ -5,6 +5,8 @@ import { createSerialOperation } from '@deep-foundation/deeplinks/imports/gql/in
 import debug from 'debug';
 import { GeolocationPlugin } from '@capacitor/geolocation';
 import { useEffect, useState } from 'react';
+import { Link } from '@deep-foundation/deeplinks/imports/minilinks';
+import { BoolExpLink } from '@deep-foundation/deeplinks/imports/client_types';
 
 /**
  * 
@@ -177,6 +179,21 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
       this.usePositionWatch(options)
     
       return children ?? null;
+    },
+    usePosition(options: UsePositionOptions): UsePositionResult {
+      const { containerLinkId = deep.linkId } = options;
+    
+      const subscriptionData: BoolExpLink = {
+        type_id: this.capacitorGeolocationPackage.Position.idLocal(),
+        in: {
+          type_id: deep.idLocal("@deep-foundation/core", "Contain"),
+          from_id: containerLinkId
+        }
+      }
+      
+      const {data: [positionLink] = [undefined]} = this.useDeepSubscription(subscriptionData)
+    
+      return positionLink;
     }
   }, deep);
 }
@@ -222,3 +239,13 @@ export type UsePositionWatchOptions = WatchPositionOptions;
 export type WithComponentWatchOptions = UsePositionWatchOptions & {
   children?: JSX.Element|null
 }
+
+export interface UsePositionOptions {
+  /**
+   * Container link id
+   * 
+   * @defaultValue {@link UsePositionOptions.deep.linkId}
+   */
+  containerLinkId?: number;
+}
+export type UsePositionResult = Link<number>|undefined
