@@ -139,6 +139,18 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
     },
     async clearWatch(options: ClearWatchOptions) {
       await Geolocation.clearWatch(options)
+    },
+    async checkPermissions(): CheckPermissionsResult  {
+      const log = debug(`@deep-foundation/capacitor-geolocation:${this.checkPermissions.name}`);
+      const permissionsStatus = await Geolocation.checkPermissions()
+      log({permissionsStatus})
+      return permissionsStatus
+    },
+    async requestPermissions(): RequestPermissionsResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:${this.requestPermissions.name}`);
+      const permissionsStatus = await Geolocation.requestPermissions()
+      log({permissionsStatus})
+      return permissionsStatus
     }
   }, deep);
 }
@@ -173,3 +185,6 @@ export type UpdatePositionResult = ReturnType<DeepClientInstance['serial']>
 
 export type MakeUpdateUpdatePositionOperationsOptions = { position: Position | null, id: number }
 export type MakeUpdateUpdatePositionOperationsResult = Promise<Array<SerialOperation>>
+
+export type CheckPermissionsResult = ReturnType<GeolocationPlugin['checkPermissions']>
+export type RequestPermissionsResult = ReturnType<GeolocationPlugin['requestPermissions']>
