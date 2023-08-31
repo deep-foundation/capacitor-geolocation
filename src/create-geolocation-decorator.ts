@@ -119,7 +119,7 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
   }, deep);
 }
 
-export type GeolocationDecorator<T extends DeepClientInstance> = T & {
+export type GeolocationDecorator<T extends DeepClientInstance = DeepClientInstance> = T & {
   capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
   applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
