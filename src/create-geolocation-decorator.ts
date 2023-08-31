@@ -94,6 +94,15 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
 
       return [operation]
     },
+    async updatePosition(options: InsertPositionOptions): UpdatePositionResult {
+      return await deep.update({
+        link_id: options.id
+      }, {
+        value: options.position
+      }, {
+        table: 'objects'
+      })
+    },
     async getPosition(options: GetPositionOptions): GetPositionResult {
       const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.getPosition.name}`);
 
@@ -143,3 +152,6 @@ export type GetPositionResult = Promise<Partial<Position> | undefined>
 
 export type WatchPositionOptions = { watchPositionOptions: PositionOptions, containerLinkId?: number }
 export type WatchPositionResult = ReturnType<GeolocationPlugin['watchPosition']>
+
+export type UpdatePositionOptions = { position: Position | null, id: number }
+export type UpdatePositionResult = ReturnType<DeepClientInstance['serial']>
