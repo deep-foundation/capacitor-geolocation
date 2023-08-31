@@ -103,6 +103,24 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
         table: 'objects'
       })
     },
+    async makeUpdatePositionOperations(options: UpdatePositionOptions): MakePositionInsertOperationsResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.makeUpdatePositionOperations.name}`);
+      log({ options })
+
+      const operation = createSerialOperation({
+        type: 'update',
+        table: 'objects',
+        value: {
+          value: options.position
+        },
+        exp: {
+          link_id: options.id
+        }
+      })
+      log({ operation })
+
+      return [operation]
+    },
     async getPosition(options: GetPositionOptions): GetPositionResult {
       const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.getPosition.name}`);
 
