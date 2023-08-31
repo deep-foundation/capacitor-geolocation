@@ -22,8 +22,39 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
   log({ _package })
   return Object.assign({
     ...deep,
+    requiredPackagesInMinilinksToApply: [
+      ...('requiredPackagesInMinilinksToApply' in deep ? deep.requiredPackagesInMinilinksToApply as Array<string> : []),
+      _package.name,
+      "@deep-foundation/core"
+    ],
+    async applyRequiredPackagesInMinilinks() {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.applyRequiredPackagesInMinilinks.name}`);
+
+      const { data: links } = await deep.select({
+        up: {
+          tree_id: {
+            _id: ["@deep-foundation/core", "containTree"]
+          },
+          parent: {
+            _or: this.requiredPackagesInMinilinksToApply.map((packageName) => ({
+              id: {
+                _id: [packageName]
+              }
+            }))
+          }
+        }
+      })
+      log({links})
+
+      const minilinksApplyResult = deep.minilinks.apply(links)
+      log({ minilinksApplyResult })
+
+      this.requiredPackagesInMinilinksToApply = [];
+
+      return minilinksApplyResult
+    },
     async insertPosition(options: InsertPositionOptions): InsertPositionResult {
-      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:insertPosition`);
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.insertPosition.name}`);
       log({ options })
       const { position, containerLinkId, id } = options;
       const insertOperations = await this.makePositionInsertOperations({ position: position, containerLinkId: containerLinkId, id: id });
@@ -34,7 +65,7 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
       return serialResult;
     },
     async makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult {
-      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:makePositionInsertOperations`);
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.makePositionInsertOperations.name}`);
       log({ options })
       const { id } = options;
 
@@ -62,7 +93,7 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
       return [operation]
     },
     async getPosition(options: GetPositionOptions): GetPositionResult {
-      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:getPosition`);
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.getPosition.name}`);
 
       const { data: [positionLink] } = await deep.select(options.linkId);
       if (!positionLink) {
@@ -83,6 +114,8 @@ export function createGeolocationDecorator<T extends DeepClientInstance>(deep: T
 }
 
 export type GeolocationDecorator<T extends DeepClientInstance> = T & Package & {
+  requiredPackagesInMinilinksToApply: Array<string>
+  applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
   insertPosition(options: InsertPositionOptions): InsertPositionResult
   makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
   getPosition(options: GetPositionOptions): GetPositionResult
