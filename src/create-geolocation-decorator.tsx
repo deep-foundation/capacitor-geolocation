@@ -141,7 +141,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
         await this.insertPosition({ position, containerLinkId })
       })
     },
-    async clearWatch(options: ClearWatchOptions) {
+    async clearWatch(options: ClearWatchOptions): ClearWatchResult {
       await Geolocation.clearWatch(options)
     },
     async checkPermissions(): CheckPermissionsResult  {
@@ -156,7 +156,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
       log({permissionsStatus})
       return permissionsStatus
     },
-    usePositionWatch(options: UsePositionWatchOptions) {
+    usePositionWatch(options: UsePositionWatchOptions): void {
       const log = debug(`@deep-foundation/capacitor-geolocation:${this.usePositionWatch.name}`);
       log({options})
       const [watchId, setWatchId] = useState<string|undefined>(undefined)
@@ -174,7 +174,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
         }
       }, [])
     },
-    WithComponentWatch(options: WithComponentWatchOptions) {
+    WithComponentWatch(options: WithComponentWatchOptions): WithComponentWatchResult {
       const { children } = options;
     
       this.usePositionWatch(options)
@@ -213,12 +213,13 @@ export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepCl
   checkPermissions(): CheckPermissionsResult
   requestPermissions(): RequestPermissionsResult
   usePositionWatch(options: UsePositionWatchOptions): void
-  WithComponentWatch(options: WithComponentWatchOptions): JSX.Element|null
+  WithComponentWatch(options: WithComponentWatchOptions): WithComponentWatchResult
   usePosition(options: UsePositionOptions): UsePositionResult
 }
 
 export type ApplyRequiredPackagesInMinilnksResult = Promise<ReturnType<DeepClientInstance['minilinks']['apply']>>
-export type ClearWatchResult = ReturnType<DeepClientInstance['serial']>
+export type ClearWatchResult = ReturnType<GeolocationPlugin['clearWatch']>
+export type WithComponentWatchResult = Exclude<WithComponentWatchOptions['children'],undefined>
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
 export type InsertPositionResult = ReturnType<DeepClientInstance['serial']>
