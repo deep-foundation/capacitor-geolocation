@@ -14,6 +14,10 @@ export {
   UpdatePositionOptions,
   UpdatePositionResult,
   WatchPositionOptions,
-  WatchPositionResult
+  WatchPositionResult,
+  UsePositionOptions,
+  UsePositionResult,
+  UsePositionWatchOptions,
+  WithComponentWatchOptions
 } from './create-geolocation-decorator.js'
 export { Package } from './package.js'
