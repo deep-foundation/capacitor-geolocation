@@ -39,6 +39,8 @@
   },
   "peerDependencies": {
     "@capacitor/geolocation": "^5.0.6",
-    "@deep-foundation/deeplinks": "~0.0.290"
+    "@deep-foundation/deeplinks": "~0.0.290",
+    "react": "^18.2.0",
+    "@chakra-ui/react": "^2.8.0"
   }
 }
