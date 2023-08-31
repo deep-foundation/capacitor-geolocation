@@ -33,7 +33,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
       _package.name,
       "@deep-foundation/core"
     ],
-    async applyRequiredPackagesInMinilinks() {
+    async applyRequiredPackagesInMinilinks(): ApplyRequiredPackagesInMinilnksResult {
       const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.applyRequiredPackagesInMinilinks.name}`);
 
       const { data: links } = await deep.select({
@@ -202,20 +202,23 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
 export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepClientInstance> = TDeepClient & {
   capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
-  applyRequiredPackagesInMinilinks(): ReturnType<DeepClientInstance['minilinks']['apply']>
+  applyRequiredPackagesInMinilinks(): ApplyRequiredPackagesInMinilnksResult
   insertPosition(options: InsertPositionOptions): InsertPositionResult
   updatePosition(options: UpdatePositionOptions): UpdatePositionResult
   makeUpdatePositionOperations(options: MakeUpdateUpdatePositionOperationsOptions): MakeUpdateUpdatePositionOperationsResult
   makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
   getPosition(options: GetPositionOptions): GetPositionResult
   watchPosition(options: WatchPositionOptions): WatchPositionResult
-  clearWatch(options: ClearWatchOptions): ReturnType<GeolocationPlugin['clearWatch']>
+  clearWatch(options: ClearWatchOptions): ClearWatchResult
   checkPermissions(): CheckPermissionsResult
   requestPermissions(): RequestPermissionsResult
   usePositionWatch(options: UsePositionWatchOptions): void
   WithComponentWatch(options: WithComponentWatchOptions): JSX.Element|null
   usePosition(options: UsePositionOptions): UsePositionResult
 }
+
+export type ApplyRequiredPackagesInMinilnksResult = Promise<ReturnType<DeepClientInstance['minilinks']['apply']>>
+export type ClearWatchResult = ReturnType<DeepClientInstance['serial']>
 
 export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
 export type InsertPositionResult = ReturnType<DeepClientInstance['serial']>
