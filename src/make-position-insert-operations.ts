@@ -4,17 +4,17 @@ import { GeolocationDecorator } from "./create-geolocation-decorator";
 import { Position } from "@capacitor/geolocation";
 import { SerialOperation } from "@deep-foundation/deeplinks/imports/client";
 
-export async function makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult {
-  const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${makePositionInsertOperations.name}`);
+export async function makePositionInsertOperations(this: GeolocationDecorator, options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult {
+  const log = debug(`@deep-foundation/capacitor-geolocation:${makePositionInsertOperations.name}`);
   log({ options })
-  const { id, deep } = options;
+  const { id } = options;
 
   const operation = createSerialOperation({
     ...(id ? { id } : {}),
     type: 'insert',
     table: 'links',
     objects: {
-      type_id: deep.capacitorGeolocationPackage.Position.idLocal(),
+      type_id: this.capacitorGeolocationPackage.Position.idLocal(),
       object: {
         data: {
           value: options.position
@@ -22,8 +22,8 @@ export async function makePositionInsertOperations(options: MakePositionInsertOp
       },
       in: {
         data: {
-          type_id: deep.idLocal("@deep-foundation/core", "Contain"),
-          from_id: options.containerLinkId ?? deep.linkId,
+          type_id: this.idLocal("@deep-foundation/core", "Contain"),
+          from_id: options.containerLinkId ?? this.linkId,
         }
       }
     },
@@ -33,5 +33,5 @@ export async function makePositionInsertOperations(options: MakePositionInsertOp
   return [operation]
 }
 
-export type MakePositionInsertOperationsOptions = { position: Position | null, containerLinkId?: number, id?: number, deep: GeolocationDecorator }
+export type MakePositionInsertOperationsOptions = { position: Position | null, containerLinkId?: number, id?: number }
 export type MakePositionInsertOperationsResult = Promise<Array<SerialOperation>>

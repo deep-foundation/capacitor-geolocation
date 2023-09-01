@@ -1,17 +1,16 @@
 import debug from "debug";
-import { GeolocationDecorator } from "./create-geolocation-decorator";
+import { GeolocationDecorator, createGeolocationDecorator } from "./create-geolocation-decorator";
 import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client";
 
-export async function applyRequiredPackagesInMinilinks(options: ApplyRequiredPackagesInMinilnksOptions): ApplyRequiredPackagesInMinilnksResult {
-  const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${applyRequiredPackagesInMinilinks.name}`);
-  const { deep } = options;
-  const { data: links } = await deep.select({
+export async function applyRequiredPackagesInMinilinks(this: GeolocationDecorator): ApplyRequiredPackagesInMinilnksResult {
+  const log = debug(`@deep-foundation/capacitor-geolocation:${applyRequiredPackagesInMinilinks.name}`);
+  const { data: links } = await this.select({
     up: {
       tree_id: {
         _id: ["@deep-foundation/core", "containTree"]
       },
       parent: {
-        _or: deep.requiredPackagesInMinilinksToApply.map((packageName) => ({
+        _or: this.requiredPackagesInMinilinksToApply.map((packageName) => ({
           id: {
             _id: [packageName]
           }
@@ -21,15 +20,12 @@ export async function applyRequiredPackagesInMinilinks(options: ApplyRequiredPac
   })
   log({ links })
 
-  const minilinksApplyResult = deep.minilinks.apply(links)
+  const minilinksApplyResult = this.minilinks.apply(links)
   log({ minilinksApplyResult })
 
-  deep.requiredPackagesInMinilinksToApply = [];
+  this.requiredPackagesInMinilinksToApply = [];
 
   return minilinksApplyResult
 }
 
-export type ApplyRequiredPackagesInMinilnksOptions = {
-  deep: GeolocationDecorator
-}
 export type ApplyRequiredPackagesInMinilnksResult = Promise<ReturnType<DeepClientInstance['minilinks']['apply']>>

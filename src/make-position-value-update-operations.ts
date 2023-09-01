@@ -2,9 +2,10 @@ import { Position } from "@capacitor/geolocation";
 import { SerialOperation } from "@deep-foundation/deeplinks/imports/client";
 import { createSerialOperation } from "@deep-foundation/deeplinks/imports/gql";
 import debug from "debug";
+import { GeolocationDecorator } from "./create-geolocation-decorator";
 
-export async function makePositionUpdateOperations(options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult {
-  const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${makePositionUpdateOperations.name}`);
+export async function makePositionValueUpdateOperations(this: GeolocationDecorator, options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult {
+  const log = debug(`@deep-foundation/capacitor-geolocation:${makePositionValueUpdateOperations.name}`);
   log({ options })
 
   const operation = createSerialOperation({

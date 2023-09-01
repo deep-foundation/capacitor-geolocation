@@ -2,8 +2,8 @@ import { Position } from "@capacitor/geolocation";
 import debug from "debug";
 import { GeolocationDecorator } from "./create-geolocation-decorator";
 
-export async function getPosition(options: GetPositionOptions): GetPositionResult {
-  const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${getPosition.name}`);
+export async function getPosition(this: GeolocationDecorator, options: GetPositionOptions): GetPositionResult {
+  const log = debug(`@deep-foundation/capacitor-geolocation:${getPosition.name}`);
   log({options})
   const {deep} = options;
   const { data: [positionLink] } = await deep.select(options.linkId);
@@ -15,5 +15,5 @@ export async function getPosition(options: GetPositionOptions): GetPositionResul
   return positionLink.value?.value;
 }
 
-export type GetPositionOptions = { linkId: number, deep: GeolocationDecorator}
+export type GetPositionOptions = { linkId: number}
 export type GetPositionResult = Promise<Partial<Position> | undefined>

@@ -1,6 +1,7 @@
 import { GeolocationPlugin, ClearWatchOptions as CapacitorClearWatchOptions, Geolocation } from "@capacitor/geolocation"
+import { GeolocationDecorator } from "./create-geolocation-decorator";
 
-export async function clearWatch(options: ClearWatchOptions): ClearWatchResult {
+export async function clearWatch(this: GeolocationDecorator, options: ClearWatchOptions): ClearWatchResult {
   await Geolocation.clearWatch(options)
 }
 

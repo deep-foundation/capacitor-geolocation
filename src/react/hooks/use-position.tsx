@@ -3,7 +3,7 @@ import { GeolocationDecorator } from "../../create-geolocation-decorator";
 import { BoolExpLink } from "@deep-foundation/deeplinks/imports/client_types";
 import { Link } from "@deep-foundation/deeplinks/imports/minilinks";
 
-export function usePosition(options: UsePositionOptions): UsePositionResult {
+export function usePosition(this: GeolocationDecorator, options: UsePositionOptions): UsePositionResult {
   const { deep, containerLinkId = deep.linkId } = options;
 
   const subscriptionData: BoolExpLink = {
@@ -26,6 +26,6 @@ export interface UsePositionOptions {
    * @defaultValue {@link UsePositionOptions.deep.linkId}
    */
   containerLinkId?: number;
-  deep: GeolocationDecorator
+  
 }
 export type UsePositionResult = Link<number>|undefined
