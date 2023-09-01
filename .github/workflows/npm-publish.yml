@@ -9,12 +9,9 @@ on:
       - .github/workflows/npm-publish.yml
   workflow_dispatch:
 
-env:
-  NPM_PUBLISH_VERSION: ${{ github.event.inputs.NPM_PUBLISH_VERSION }}
-
 jobs:
   main:
-    uses: "deep-foundation/workflows/.github/workflows/npm-publish.yml@npm-publish-${{env.NPM_PUBLISH_VERSION}}"
+    uses: deep-foundation/workflows/.github/workflows/npm-publish.yml@npm-publish-4.0.0
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
     with:
