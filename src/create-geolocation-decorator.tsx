@@ -1,26 +1,12 @@
 import { DeepClientInstance, SerialOperation } from '@deep-foundation/deeplinks/imports/client.js'
 import { Package } from './package';
-import { Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
+import { ClearWatchOptions, Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
 import { createSerialOperation } from '@deep-foundation/deeplinks/imports/gql/index.js';
 import debug from 'debug';
 import { GeolocationPlugin } from '@capacitor/geolocation';
 import { useEffect, useState } from 'react';
 import { Link } from '@deep-foundation/deeplinks/imports/minilinks';
 import { BoolExpLink } from '@deep-foundation/deeplinks/imports/client_types';
-import { UsePositionOptions, UsePositionResult, usePosition } from './react/hooks/use-position';
-import { WatchPositionOptions, WatchPositionResult, watchPosition } from './watch-position';
-import { UsePositionWatchOptions, usePositionWatch } from './react/hooks/use-position-watch';
-import { WithPositionWatch, WithPositionWatchOptions, WithPositionWatchResult } from './react/components/with-position-watch';
-import { CheckPermissionsResult, checkPermissions } from './check-permissions';
-import { MakePositionUpdateOperationsOptions, MakePositionUpdateOperationsResult, makePositionUpdateOperations } from './make-position-update-operations';
-import { RequestPermissionsResult, requestPermissions } from './request-permissions';
-import { GetPositionOptions, GetPositionResult, getPosition } from './get-position';
-import { UpdatePositionOptions, UpdatePositionResult, updatePosition } from './update-position';
-import { MakePositionInsertOperationsOptions, MakePositionInsertOperationsResult, makePositionInsertOperations } from './make-position-insert-operations';
-import { InsertPositionOptions, InsertPositionResult, insertPosition } from './insert-position';
-import { ApplyRequiredPackagesInMinilnksOptions, ApplyRequiredPackagesInMinilnksResult } from './apply-required-packages-in-minilinks';
-import { REQUIRED_PACKAGES_IN_MINILINKS } from './required-packages-in-minilnks';
-import { ClearWatchOptions, ClearWatchResult, clearWatch } from './clear-watch';
 
 /**
  * 
@@ -44,67 +30,229 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
     capacitorGeolocationPackage: _package,
     requiredPackagesInMinilinksToApply: [
       ...('requiredPackagesInMinilinksToApply' in deep ? deep.requiredPackagesInMinilinksToApply as Array<string> : []),
-      ...REQUIRED_PACKAGES_IN_MINILINKS
+      _package.name,
+      "@deep-foundation/core"
     ],
-    applyRequiredPackagesInMinilinks(options) {
-      return this.applyRequiredPackagesInMinilinks({...options, deep: this})
+    async applyRequiredPackagesInMinilinks(): ApplyRequiredPackagesInMinilnksResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.applyRequiredPackagesInMinilinks.name}`);
+
+      const { data: links } = await deep.select({
+        up: {
+          tree_id: {
+            _id: ["@deep-foundation/core", "containTree"]
+          },
+          parent: {
+            _or: this.requiredPackagesInMinilinksToApply.map((packageName) => ({
+              id: {
+                _id: [packageName]
+              }
+            }))
+          }
+        }
+      })
+      log({links})
+
+      const minilinksApplyResult = deep.minilinks.apply(links)
+      log({ minilinksApplyResult })
+
+      this.requiredPackagesInMinilinksToApply = [];
+
+      return minilinksApplyResult
     },
-    insertPosition(options) {
-      return insertPosition({...options, deep: this})
+    async insertPosition(options: InsertPositionOptions): InsertPositionResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.insertPosition.name}`);
+      log({ options })
+      const { position, containerLinkId, id } = options;
+      const insertOperations = await this.makePositionInsertOperations({ position: position, containerLinkId: containerLinkId, id: id });
+      log({ insertOperations })
+      const serialResult = await this.serial({ operations: insertOperations })
+      log({ serialResult })
+
+      return serialResult;
     },
-    makePositionInsertOperations(options) {
-      return makePositionInsertOperations({...options, deep: this})
+    async makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.makePositionInsertOperations.name}`);
+      log({ options })
+      const { id } = options;
+
+      const operation = createSerialOperation({
+        ...(id ? { id } : {}),
+        type: 'insert',
+        table: 'links',
+        objects: {
+          type_id: _package.Position.idLocal(),
+          object: {
+            data: {
+              value: options.position
+            }
+          },
+          in: {
+            data: {
+              type_id: deep.idLocal("@deep-foundation/core", "Contain"),
+              from_id: options.containerLinkId ?? deep.linkId,
+            }
+          }
+        },
+      })
+      log({ operation })
+
+      return [operation]
     },
-    updatePosition(options) {
-      return updatePosition({...options, deep: this})
+    async updatePosition(options: UpdatePositionOptions): UpdatePositionResult {
+      const operations = await this.makeUpdatePositionOperations(options);
+      return await deep.serial({
+        operations
+      })
     },
-    getPosition (options) {
-      return getPosition({...options, deep: this})
+    async makeUpdatePositionOperations(options: MakeUpdateUpdatePositionOperationsOptions): MakeUpdateUpdatePositionOperationsResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.makeUpdatePositionOperations.name}`);
+      log({ options })
+
+      const operation = createSerialOperation({
+        type: 'update',
+        table: 'objects',
+        value: {
+          value: options.position
+        },
+        exp: {
+          link_id: options.id
+        }
+      })
+      log({ operation })
+
+      return [operation]
     },
-    makeUpdatePositionOperations (options) {
-      return makePositionUpdateOperations({...options})
+    async getPosition(options: GetPositionOptions): GetPositionResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:GeolocationDecorator:${this.getPosition.name}`);
+
+      const { data: [positionLink] } = await deep.select(options.linkId);
+      if (!positionLink) {
+        throw new Error(`Failed to find link with id ##${options.linkId}`)
+      }
+
+      return positionLink.value?.value;
     },
-    clearWatch(options) {
-      return clearWatch({...options}) 
+    async watchPosition(options: WatchPositionOptions): WatchPositionResult {
+      const { containerLinkId, watchPositionOptions = {}} = options;
+      return await Geolocation.watchPosition(watchPositionOptions, async (position, error) => {
+        if (error) {
+          throw error;
+        }
+        await this.insertPosition({ position, containerLinkId })
+      })
     },
-    checkPermissions() {
-      return checkPermissions();
+    async clearWatch(options: ClearWatchOptions): ClearWatchResult {
+      await Geolocation.clearWatch(options)
     },
-    requestPermissions() {
-      return checkPermissions();
+    async checkPermissions(): CheckPermissionsResult  {
+      const log = debug(`@deep-foundation/capacitor-geolocation:${this.checkPermissions.name}`);
+      const permissionsStatus = await Geolocation.checkPermissions()
+      log({permissionsStatus})
+      return permissionsStatus
     },
-    watchPosition(options) {
-      return watchPosition({ ...options, deep: this });
+    async requestPermissions(): RequestPermissionsResult {
+      const log = debug(`@deep-foundation/capacitor-geolocation:${this.requestPermissions.name}`);
+      const permissionsStatus = await Geolocation.requestPermissions()
+      log({permissionsStatus})
+      return permissionsStatus
     },
-    usePositionWatch(options) {
-      return usePositionWatch({ ...options, deep: this });
+    usePositionWatch(options: UsePositionWatchOptions): void {
+      const log = debug(`@deep-foundation/capacitor-geolocation:${this.usePositionWatch.name}`);
+      log({options})
+      const [watchId, setWatchId] = useState<string|undefined>(undefined)
+      
+      useEffect(() => {
+        this.watchPosition(options).then((watchId) => {
+          log({watchId})
+          setWatchId(watchId)
+        })
+    
+        return () => {
+          if (watchId) {
+            this.clearWatch({id: watchId})
+          }
+        }
+      }, [])
     },
-    usePosition(options) {
-      return usePosition({ ...options, deep: this });
+    WithComponentWatch(options: WithComponentWatchOptions): WithComponentWatchResult {
+      const { children } = options;
+    
+      this.usePositionWatch(options)
+    
+      return children ?? null;
     },
-    WithPositionWatch(options) {
-      return WithPositionWatch({ ...options, deep: this });
-    },  
-  } as GeolocationDecorator<TDeepClient>, deep);
+    usePosition(options: UsePositionOptions): UsePositionResult {
+      const { containerLinkId = deep.linkId } = options;
+    
+      const subscriptionData: BoolExpLink = {
+        type_id: this.capacitorGeolocationPackage.Position.idLocal(),
+        in: {
+          type_id: deep.idLocal("@deep-foundation/core", "Contain"),
+          from_id: containerLinkId
+        }
+      }
+      
+      const {data: [positionLink] = [undefined]} = this.useDeepSubscription(subscriptionData)
+    
+      return positionLink;
+    }
+  }, deep);
 }
 
 export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepClientInstance> = TDeepClient & {
-  "@deep-foundation/capacitor-geolocation": Package,
   capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
-  applyRequiredPackagesInMinilinks(options: ApplyRequiredPackagesInMinilnksOptions): ApplyRequiredPackagesInMinilnksResult
-  insertPosition(options: GeolocationWrapperMethodOptions<InsertPositionOptions>): InsertPositionResult
-  updatePosition(options: GeolocationWrapperMethodOptions<UpdatePositionOptions>): UpdatePositionResult
-  makeUpdatePositionOperations(options: GeolocationWrapperMethodOptions<MakePositionUpdateOperationsOptions>): MakePositionUpdateOperationsResult
-  makePositionInsertOperations(options: GeolocationWrapperMethodOptions<MakePositionInsertOperationsOptions>): MakePositionInsertOperationsResult
-  getPosition(options: GeolocationWrapperMethodOptions<GetPositionOptions>): GetPositionResult
-  watchPosition(options: GeolocationWrapperMethodOptions<WatchPositionOptions>): WatchPositionResult
-  clearWatch(options: GeolocationWrapperMethodOptions<ClearWatchOptions>): ClearWatchResult
+  applyRequiredPackagesInMinilinks(): ApplyRequiredPackagesInMinilnksResult
+  insertPosition(options: InsertPositionOptions): InsertPositionResult
+  updatePosition(options: UpdatePositionOptions): UpdatePositionResult
+  makeUpdatePositionOperations(options: MakeUpdateUpdatePositionOperationsOptions): MakeUpdateUpdatePositionOperationsResult
+  makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
+  getPosition(options: GetPositionOptions): GetPositionResult
+  watchPosition(options: WatchPositionOptions): WatchPositionResult
+  clearWatch(options: ClearWatchOptions): ClearWatchResult
   checkPermissions(): CheckPermissionsResult
   requestPermissions(): RequestPermissionsResult
-  usePositionWatch(options: GeolocationWrapperMethodOptions<UsePositionWatchOptions>): void
-  WithPositionWatch(options: GeolocationWrapperMethodOptions<WithPositionWatchOptions>): WithPositionWatchResult
-  usePosition(options: GeolocationWrapperMethodOptions<UsePositionOptions>): UsePositionResult
+  usePositionWatch(options: UsePositionWatchOptions): void
+  WithComponentWatch(options: WithComponentWatchOptions): WithComponentWatchResult
+  usePosition(options: UsePositionOptions): UsePositionResult
 }
 
-export type GeolocationWrapperMethodOptions<TOptions> = Omit<TOptions, 'deep'>
+export type ApplyRequiredPackagesInMinilnksResult = Promise<ReturnType<DeepClientInstance['minilinks']['apply']>>
+export type ClearWatchResult = ReturnType<GeolocationPlugin['clearWatch']>
+export type WithComponentWatchResult = Exclude<WithComponentWatchOptions['children'],undefined>
+
+export type InsertPositionOptions = { position: Position | null, containerLinkId?: number, id?: number }
+export type InsertPositionResult = ReturnType<DeepClientInstance['serial']>
+
+export type MakePositionInsertOperationsOptions = { position: Position | null, containerLinkId?: number, id?: number }
+export type MakePositionInsertOperationsResult = Promise<Array<SerialOperation>>
+
+export type GetPositionOptions = { linkId: number }
+export type GetPositionResult = Promise<Partial<Position> | undefined>
+
+export type WatchPositionOptions = { watchPositionOptions?: PositionOptions, containerLinkId?: number }
+export type WatchPositionResult = ReturnType<GeolocationPlugin['watchPosition']>
+
+export type UpdatePositionOptions = { position: Position | null, id: number }
+export type UpdatePositionResult = ReturnType<DeepClientInstance['serial']>
+
+export type MakeUpdateUpdatePositionOperationsOptions = { position: Position | null, id: number }
+export type MakeUpdateUpdatePositionOperationsResult = Promise<Array<SerialOperation>>
+
+export type CheckPermissionsResult = ReturnType<GeolocationPlugin['checkPermissions']>
+export type RequestPermissionsResult = ReturnType<GeolocationPlugin['requestPermissions']>
+
+export type UsePositionWatchOptions = WatchPositionOptions;
+export type WithComponentWatchOptions = UsePositionWatchOptions & {
+  children?: JSX.Element|null
+}
+
+export interface UsePositionOptions {
+  /**
+   * Container link id
+   * 
+   * @defaultValue {@link UsePositionOptions.deep.linkId}
+   */
+  containerLinkId?: number;
+}
+export type UsePositionResult = Link<number>|undefined
