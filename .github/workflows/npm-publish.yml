@@ -11,7 +11,7 @@ on:
 
 jobs:
   main:
-    uses: deep-foundation/workflows/.github/workflows/npm-publish.yml@npm-publish-${{vars.NPM_PUBLISH_VERSION}}
+    uses: "deep-foundation/workflows/.github/workflows/npm-publish.yml@npm-publish-${{vars.NPM_PUBLISH_VERSION}}"
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
     with:
