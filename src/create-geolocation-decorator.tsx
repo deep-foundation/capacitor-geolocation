@@ -1,20 +1,20 @@
 import { DeepClientInstance } from '@deep-foundation/deeplinks/imports/client.js'
-import { Package } from './package';
+import { Package } from './package.js';
 import debug from 'debug';
-import { UsePositionOptions, UsePositionResult, usePosition } from './react/hooks/use-position';
-import { WatchPositionOptions, WatchPositionResult, watchPosition } from './watch-position';
-import { UsePositionWatchOptions, usePositionWatch } from './react/hooks/use-position-watch';
-import { WithPositionWatch, WithPositionWatchOptions, WithPositionWatchResult } from './react/components/with-position-watch';
-import { CheckPermissionsResult, checkPermissions } from './check-permissions';
-import { MakePositionUpdateOperationsOptions, MakePositionUpdateOperationsResult, makePositionValueUpdateOperations } from './make-position-value-update-operations';
-import { RequestPermissionsResult, requestPermissions } from './request-permissions';
-import { GetPositionOptions, GetPositionResult, getPosition } from './get-position';
-import { UpdatePositionOptions, UpdatePositionResult, updatePosition } from './update-position';
-import { MakePositionInsertOperationsOptions, MakePositionInsertOperationsResult, makePositionInsertOperations } from './make-position-insert-operations';
-import { InsertPositionOptions, InsertPositionResult, insertPosition } from './insert-position';
-import { ApplyRequiredPackagesInMinilnksResult, applyRequiredPackagesInMinilinks } from './apply-required-packages-in-minilinks';
-import { REQUIRED_PACKAGES_IN_MINILINKS } from './required-packages-in-minilnks';
-import { ClearWatchOptions, ClearWatchResult, clearWatch } from './clear-watch';
+import { UsePositionOptions, UsePositionResult, usePosition } from './react/hooks/use-position.js';
+import { WatchPositionOptions, WatchPositionResult, watchPosition } from './watch-position.js';
+import { UsePositionWatchOptions, usePositionWatch } from './react/hooks/use-position-watch.js';
+import { WithPositionWatch, WithPositionWatchOptions, WithPositionWatchResult } from './react/components/with-position-watch.js';
+import { CheckPermissionsResult, checkPermissions } from './check-permissions.js';
+import { MakePositionUpdateOperationsOptions, MakePositionUpdateOperationsResult, makePositionValueUpdateOperations } from './make-position-value-update-operations.js';
+import { RequestPermissionsResult, requestPermissions } from './request-permissions.js';
+import { GetPositionOptions, GetPositionResult, getPosition } from './get-position.js';
+import { UpdatePositionOptions, UpdatePositionResult, updatePosition } from './update-position.js';
+import { MakePositionInsertOperationsOptions, MakePositionInsertOperationsResult, makePositionInsertOperations } from './make-position-insert-operations.js';
+import { InsertPositionOptions, InsertPositionResult, insertPosition } from './insert-position.js';
+import { ApplyRequiredPackagesInMinilnksResult, applyRequiredPackagesInMinilinks } from './apply-required-packages-in-minilinks.js';
+import { REQUIRED_PACKAGES_IN_MINILINKS } from './required-packages-in-minilnks.js';
+import { ClearWatchOptions, ClearWatchResult, clearWatch } from './clear-watch.js';
 
 /**
  * 
