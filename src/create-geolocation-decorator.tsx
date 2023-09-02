@@ -1,12 +1,6 @@
-import { DeepClientInstance, SerialOperation } from '@deep-foundation/deeplinks/imports/client.js'
+import { DeepClientInstance } from '@deep-foundation/deeplinks/imports/client.js'
 import { Package } from './package';
-import { Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
-import { createSerialOperation } from '@deep-foundation/deeplinks/imports/gql/index.js';
 import debug from 'debug';
-import { GeolocationPlugin } from '@capacitor/geolocation';
-import { useEffect, useState } from 'react';
-import { Link } from '@deep-foundation/deeplinks/imports/minilinks';
-import { BoolExpLink } from '@deep-foundation/deeplinks/imports/client_types';
 import { UsePositionOptions, UsePositionResult, usePosition } from './react/hooks/use-position';
 import { WatchPositionOptions, WatchPositionResult, watchPosition } from './watch-position';
 import { UsePositionWatchOptions, usePositionWatch } from './react/hooks/use-position-watch';
