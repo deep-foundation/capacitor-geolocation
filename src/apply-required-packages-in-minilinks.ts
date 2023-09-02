@@ -1,6 +1,6 @@
 import debug from "debug";
-import { GeolocationDecorator, createGeolocationDecorator } from "./create-geolocation-decorator";
-import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client";
+import { GeolocationDecorator, createGeolocationDecorator } from "./create-geolocation-decorator.js";
+import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
 
 export async function applyRequiredPackagesInMinilinks(this: GeolocationDecorator): ApplyRequiredPackagesInMinilnksResult {
   const log = debug(`@deep-foundation/capacitor-geolocation:${applyRequiredPackagesInMinilinks.name}`);

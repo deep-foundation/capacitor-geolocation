@@ -1,8 +1,8 @@
-import { createSerialOperation } from "@deep-foundation/deeplinks/imports/gql";
+import { createSerialOperation } from "@deep-foundation/deeplinks/imports/gql/index.js";
 import debug from "debug";
-import { GeolocationDecorator } from "./create-geolocation-decorator";
+import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 import { Position } from "@capacitor/geolocation";
-import { SerialOperation } from "@deep-foundation/deeplinks/imports/client";
+import { SerialOperation } from "@deep-foundation/deeplinks/imports/client.js";
 
 export async function makePositionInsertOperations(this: GeolocationDecorator, options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult {
   const log = debug(`@deep-foundation/capacitor-geolocation:${makePositionInsertOperations.name}`);

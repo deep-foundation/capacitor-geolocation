@@ -1,7 +1,7 @@
-import { DeepClient, DeepClientInstance } from "@deep-foundation/deeplinks/imports/client";
-import { GeolocationDecorator } from "../../create-geolocation-decorator";
-import { BoolExpLink } from "@deep-foundation/deeplinks/imports/client_types";
-import { Link } from "@deep-foundation/deeplinks/imports/minilinks";
+import { DeepClient, DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
+import { GeolocationDecorator } from "../../create-geolocation-decorator.js";
+import { BoolExpLink } from "@deep-foundation/deeplinks/imports/client_types.js";
+import { Link } from "@deep-foundation/deeplinks/imports/minilinks.js";
 
 export function usePosition(this: GeolocationDecorator, options: UsePositionOptions): UsePositionResult {
   const { deep, containerLinkId = deep.linkId } = options;

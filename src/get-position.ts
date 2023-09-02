@@ -1,6 +1,6 @@
 import { Position } from "@capacitor/geolocation";
 import debug from "debug";
-import { GeolocationDecorator } from "./create-geolocation-decorator";
+import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 
 export async function getPosition(this: GeolocationDecorator, options: GetPositionOptions): GetPositionResult {
   const log = debug(`@deep-foundation/capacitor-geolocation:${getPosition.name}`);

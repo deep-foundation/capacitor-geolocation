@@ -1,7 +1,7 @@
 import debug from "debug";
 import { useEffect, useState } from "react";
-import { WatchPositionOptions } from "../../watch-position";
-import { GeolocationDecorator } from "../../create-geolocation-decorator";
+import { WatchPositionOptions } from "../../watch-position.js";
+import { GeolocationDecorator } from "../../create-geolocation-decorator.js";
 
 export function usePositionWatch(this: GeolocationDecorator, options: UsePositionWatchOptions): UsePositionWatchResult {
   const log = debug(`@deep-foundation/capacitor-geolocation:${usePositionWatch.name}`);

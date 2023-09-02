@@ -1,6 +1,6 @@
 import debug from "debug";
-import { GeolocationDecorator } from "./create-geolocation-decorator";
-import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client";
+import { GeolocationDecorator } from "./create-geolocation-decorator.js";
+import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
 import { Position } from "@capacitor/geolocation";
 
 export async function insertPosition(this: GeolocationDecorator, options: InsertPositionOptions): InsertPositionResult {

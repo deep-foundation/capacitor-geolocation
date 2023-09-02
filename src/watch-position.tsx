@@ -1,5 +1,5 @@
 import { Geolocation, GeolocationPlugin } from "@capacitor/geolocation";
-import { GeolocationDecorator } from "./create-geolocation-decorator";
+import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 
 export async function watchPosition(this: GeolocationDecorator, options: WatchPositionOptions): WatchPositionResult {
   const { deep, containerLinkId, watchPositionOptions = {}} = options;

@@ -1,5 +1,5 @@
-import { GeolocationDecorator } from "../../create-geolocation-decorator";
-import { UsePositionWatchOptions } from "../hooks/use-position-watch";
+import { GeolocationDecorator } from "../../create-geolocation-decorator.js";
+import { UsePositionWatchOptions } from "../hooks/use-position-watch.js";
 
 export function WithPositionWatch(this: GeolocationDecorator, options: WithPositionWatchOptions): WithPositionWatchResult {
   const { children,  } = options;
