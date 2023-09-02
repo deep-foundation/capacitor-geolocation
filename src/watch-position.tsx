@@ -2,12 +2,12 @@ import { Geolocation, GeolocationPlugin } from "@capacitor/geolocation";
 import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 
 export async function watchPosition(this: GeolocationDecorator, options: WatchPositionOptions): WatchPositionResult {
-  const { deep, containerLinkId, watchPositionOptions = {}} = options;
+  const { containerLinkId, watchPositionOptions = {}} = options;
   return await Geolocation.watchPosition(watchPositionOptions, async (position, error) => {
     if (error) {
       throw error;
     }
-    await deep.insertPosition({ position, containerLinkId })
+    await this.insertPosition({ position, containerLinkId })
   })
 }
 
