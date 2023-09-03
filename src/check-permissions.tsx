@@ -1,4 +1,5 @@
 import { Geolocation, GeolocationPlugin } from "@capacitor/geolocation";
+import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client";
 import debug from "debug";
 
 export async function checkPermissions(): CheckPermissionsResult  {

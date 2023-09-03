@@ -1,7 +1,8 @@
+import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
 import { GeolocationDecorator } from "../../create-geolocation-decorator.js";
 import { UsePositionWatchOptions } from "../hooks/use-position-watch.js";
 
-export function WithPositionWatch(this: GeolocationDecorator, options: WithPositionWatchOptions): WithPositionWatchResult {
+export function WithPositionWatch<TDeepClient extends DeepClientInstance>(this: GeolocationDecorator<TDeepClient>, options: WithPositionWatchOptions): WithPositionWatchResult {
   const { children,  } = options;
 
   this.usePositionWatch(options)

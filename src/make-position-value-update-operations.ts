@@ -1,10 +1,10 @@
 import { Position } from "@capacitor/geolocation";
-import { SerialOperation } from "@deep-foundation/deeplinks/imports/client.js";
+import { DeepClientInstance, SerialOperation } from "@deep-foundation/deeplinks/imports/client.js";
 import { createSerialOperation } from "@deep-foundation/deeplinks/imports/gql/index.js";
 import debug from "debug";
 import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 
-export async function makePositionValueUpdateOperations(this: GeolocationDecorator, options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult {
+export async function makePositionValueUpdateOperations<TDeepClient extends DeepClientInstance>(this: GeolocationDecorator<TDeepClient>, options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult {
   const log = debug(`@deep-foundation/capacitor-geolocation:${makePositionValueUpdateOperations.name}`);
   log({ options })
 

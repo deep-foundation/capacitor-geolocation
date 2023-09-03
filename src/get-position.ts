@@ -2,8 +2,9 @@ import { Position } from "@capacitor/geolocation";
 import debug from "debug";
 import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 import { MinilinkCollection, MinilinksResult } from "@deep-foundation/deeplinks/imports/minilinks.js";
+import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
 
-export async function getPosition(this: GeolocationDecorator, options: GetPositionOptions): GetPositionResult {
+export async function getPosition<TDeepClient extends DeepClientInstance>(this: GeolocationDecorator<TDeepClient>, options: GetPositionOptions): GetPositionResult {
   const log = debug(`@deep-foundation/capacitor-geolocation:${getPosition.name}`);
   log({options})
   const { data: [positionLink] } = await this.select(options.linkId);
