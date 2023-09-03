@@ -61,17 +61,17 @@ export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepCl
   "@deep-foundation/capacitor-geolocation": Package,
   capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
-  applyRequiredPackagesInMinilinks(): ApplyRequiredPackagesInMinilnksResult
-  insertPosition(options: InsertPositionOptions): InsertPositionResult
-  updatePosition(options: UpdatePositionOptions): UpdatePositionResult
-  makeUpdatePositionOperations(options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult
-  makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
-  getPosition(options: GetPositionOptions): GetPositionResult
-  watchPosition(options: WatchPositionOptions): WatchPositionResult
-  clearWatch(options: ClearWatchOptions): ClearWatchResult
-  checkPermissions(): CheckPermissionsResult
-  requestPermissions(): RequestPermissionsResult
-  usePositionWatch(options: UsePositionWatchOptions): void
-  WithPositionWatch(options: WithPositionWatchOptions): WithPositionWatchResult
-  usePosition(options: UsePositionOptions): UsePositionResult
+  applyRequiredPackagesInMinilinks: typeof applyRequiredPackagesInMinilinks
+  insertPosition: typeof insertPosition
+  updatePosition: typeof updatePosition
+  makeUpdatePositionOperations: typeof makePositionValueUpdateOperations
+  makePositionInsertOperations: typeof makePositionInsertOperations
+  getPosition: typeof getPosition
+  watchPosition: typeof watchPosition
+  clearWatch: typeof clearWatch
+  checkPermissions: typeof checkPermissions
+  requestPermissions: typeof requestPermissions
+  usePositionWatch: typeof usePositionWatch
+  WithPositionWatch: typeof WithPositionWatch
+  usePosition: typeof usePosition
 }
