@@ -33,7 +33,6 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
   const _package = new Package({ deep });
   log({ _package })
   const result = Object.assign({
-    ...deep,
     "@deep-foundation/capacitor-geolocation": _package,
     capacitorGeolocationPackage: _package,
     requiredPackagesInMinilinksToApply: [
@@ -53,7 +52,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
     usePositionWatch: usePositionWatch,
     usePosition: usePosition,
     WithPositionWatch: WithPositionWatch,  
-  } as GeolocationDecorator<TDeepClient>, deep);
+  }, deep);
   log({result})
   return result
 }
@@ -62,17 +61,17 @@ export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepCl
   "@deep-foundation/capacitor-geolocation": Package,
   capacitorGeolocationPackage: Package,
   requiredPackagesInMinilinksToApply: Array<string>
-  applyRequiredPackagesInMinilinks(): ApplyRequiredPackagesInMinilnksResult
-  insertPosition(options: InsertPositionOptions): InsertPositionResult
-  updatePosition(options: UpdatePositionOptions): UpdatePositionResult
-  makeUpdatePositionOperations(options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult
-  makePositionInsertOperations(options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
-  getPosition(options: GetPositionOptions): GetPositionResult
-  watchPosition(options: WatchPositionOptions): WatchPositionResult
-  clearWatch(options: ClearWatchOptions): ClearWatchResult
-  checkPermissions(): CheckPermissionsResult
-  requestPermissions(): RequestPermissionsResult
-  usePositionWatch(options: UsePositionWatchOptions): void
-  WithPositionWatch(options: WithPositionWatchOptions): WithPositionWatchResult
-  usePosition(options: UsePositionOptions): UsePositionResult
+  applyRequiredPackagesInMinilinks(this: GeolocationDecorator<TDeepClient>): ApplyRequiredPackagesInMinilnksResult
+  insertPosition(this: GeolocationDecorator<TDeepClient>, options: InsertPositionOptions): InsertPositionResult
+  updatePosition(this: GeolocationDecorator<TDeepClient>, options: UpdatePositionOptions): UpdatePositionResult
+  makeUpdatePositionOperations(this: GeolocationDecorator<TDeepClient>, options: MakePositionUpdateOperationsOptions): MakePositionUpdateOperationsResult
+  makePositionInsertOperations(this: GeolocationDecorator<TDeepClient>, options: MakePositionInsertOperationsOptions): MakePositionInsertOperationsResult
+  getPosition(this: GeolocationDecorator<TDeepClient>, options: GetPositionOptions): GetPositionResult
+  watchPosition(this: GeolocationDecorator<TDeepClient>, options: WatchPositionOptions): WatchPositionResult
+  clearWatch(this: GeolocationDecorator<TDeepClient>, options: ClearWatchOptions): ClearWatchResult
+  checkPermissions(this: GeolocationDecorator<TDeepClient>, ): CheckPermissionsResult
+  requestPermissions(this: GeolocationDecorator<TDeepClient>, ): RequestPermissionsResult
+  usePositionWatch(this: GeolocationDecorator<TDeepClient>, options: UsePositionWatchOptions): void
+  WithPositionWatch(this: GeolocationDecorator<TDeepClient>, options: WithPositionWatchOptions): WithPositionWatchResult
+  usePosition(this: GeolocationDecorator<TDeepClient>, options: UsePositionOptions): UsePositionResult
 }
