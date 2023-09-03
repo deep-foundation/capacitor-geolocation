@@ -33,7 +33,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
   const _package = new Package({ deep });
   log({ _package })
   const result = Object.assign({
-    "@deep-foundation/capacitor-geolocation": _package,
+    [_package.name]: _package,
     capacitorGeolocationPackage: _package,
     requiredPackagesInMinilinksToApply: [
       ...('requiredPackagesInMinilinksToApply' in deep ? deep.requiredPackagesInMinilinksToApply as Array<string> : []),
