@@ -33,7 +33,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
   const _package = new Package({ deep });
   log({ _package })
   const result = Object.assign({
-    [_package.name]: _package,
+    "@deep-foundation/capacitor-geolocation": _package,
     capacitorGeolocationPackage: _package,
     requiredPackagesInMinilinksToApply: [
       ...('requiredPackagesInMinilinksToApply' in deep ? deep.requiredPackagesInMinilinksToApply as Array<string> : []),
@@ -52,7 +52,7 @@ export function createGeolocationDecorator<TDeepClient extends DeepClientInstanc
     usePositionWatch: usePositionWatch<TDeepClient>,
     usePosition: usePosition<TDeepClient>,
     WithPositionWatch: WithPositionWatch<TDeepClient>,  
-  }, deep);
+  } as GeolocationDecorator<TDeepClient>, deep);
   log({result})
   return result
 }
