@@ -30,7 +30,8 @@
   "dependencies": {
     "@deep-foundation/core": "~0.0.2",
     "@freephoenix888/object-to-links-async-converter": "~0.0.10",
-    "debug": "^4.3.4"
+    "debug": "^4.3.4",
+    "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0"
   },
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",
