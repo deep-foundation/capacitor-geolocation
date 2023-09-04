@@ -1,20 +1,68 @@
-import { DeepClientInstance } from '@deep-foundation/deeplinks/imports/client.js'
-import { Package } from './package.js';
-import debug from 'debug';
-import { UsePositionOptions, UsePositionResult, usePosition } from './react/hooks/use-position.js';
-import { WatchPositionOptions, WatchPositionResult, watchPosition } from './watch-position.js';
-import { UsePositionWatchOptions, usePositionWatch } from './react/hooks/use-position-watch.js';
-import { WithPositionWatch, WithPositionWatchOptions, WithPositionWatchResult } from './react/components/with-position-watch.js';
-import { CheckPermissionsResult, checkPermissions } from './check-permissions.js';
-import { MakePositionUpdateOperationsOptions, MakePositionUpdateOperationsResult, makePositionValueUpdateOperations } from './make-position-value-update-operations.js';
-import { RequestPermissionsResult, requestPermissions } from './request-permissions.js';
-import { GetPositionOptions, GetPositionResult, getPosition } from './get-position.js';
-import { UpdatePositionOptions, UpdatePositionResult, updatePosition } from './update-position.js';
-import { MakePositionInsertOperationsOptions, MakePositionInsertOperationsResult, makePositionInsertOperations } from './make-position-insert-operations.js';
-import { InsertPositionOptions, InsertPositionResult, insertPosition } from './insert-position.js';
-import { ApplyRequiredPackagesInMinilnksResult, applyRequiredPackagesInMinilinks } from './apply-required-packages-in-minilinks.js';
-import { REQUIRED_PACKAGES_IN_MINILINKS } from './required-packages-in-minilnks.js';
-import { ClearWatchOptions, ClearWatchResult, clearWatch } from './clear-watch.js';
+import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
+import { Package } from "./package.js";
+import debug from "debug";
+import {
+  UsePositionOptions,
+  UsePositionResult,
+  usePosition,
+} from "./react/hooks/use-position.js";
+import {
+  WatchPositionOptions,
+  WatchPositionResult,
+  watchPosition,
+} from "./watch-position.js";
+import {
+  UsePositionWatchOptions,
+  usePositionWatch,
+} from "./react/hooks/use-position-watch.js";
+import {
+  WithPositionWatch,
+  WithPositionWatchOptions,
+  WithPositionWatchResult,
+} from "./react/components/with-position-watch.js";
+import {
+  CheckPermissionsResult,
+  checkPermissions,
+} from "./check-permissions.js";
+import {
+  MakePositionUpdateOperationsOptions,
+  MakePositionUpdateOperationsResult,
+  makePositionValueUpdateOperations,
+} from "./make-position-value-update-operations.js";
+import {
+  RequestPermissionsResult,
+  requestPermissions,
+} from "./request-permissions.js";
+import {
+  GetPositionOptions,
+  GetPositionResult,
+  getPosition,
+} from "./get-position.js";
+import {
+  UpdatePositionOptions,
+  UpdatePositionResult,
+  updatePosition,
+} from "./update-position.js";
+import {
+  MakePositionInsertOperationsOptions,
+  MakePositionInsertOperationsResult,
+  makePositionInsertOperations,
+} from "./make-position-insert-operations.js";
+import {
+  InsertPositionOptions,
+  InsertPositionResult,
+  insertPosition,
+} from "./insert-position.js";
+import {
+  ApplyRequiredPackagesInMinilnksResult,
+  applyRequiredPackagesInMinilinks,
+} from "./apply-required-packages-in-minilinks.js";
+import { REQUIRED_PACKAGES_IN_MINILINKS } from "./required-packages-in-minilnks.js";
+import {
+  ClearWatchOptions,
+  ClearWatchResult,
+  clearWatch,
+} from "./clear-watch.js";
 
 /**
  * 
@@ -27,51 +75,64 @@ const geolocationDeepDecorator = createAdditionalFeatureDecorator(anotherDeepDec
 await geolocationDeepDecorator.applyRequiredPackagesInMinilinks();
 ```
  */
-export function createGeolocationDecorator<TDeepClient extends DeepClientInstance>(deep: TDeepClient) {
-  const log = debug(`@deep-foundation/capacitor-geolocation:${createGeolocationDecorator.name}`);
-  log({ deep })
+export function createGeolocationDecorator<
+  TDeepClient extends DeepClientInstance,
+>(deep: TDeepClient) {
+  const log = debug(
+    `@deep-foundation/capacitor-geolocation:${createGeolocationDecorator.name}`,
+  );
+  log({ deep });
   const _package = new Package({ deep });
-  log({ _package })
-  const result = Object.assign({
-    "@deep-foundation/capacitor-geolocation": _package,
-    capacitorGeolocationPackage: _package,
-    requiredPackagesInMinilinksToApply: [
-      ...('requiredPackagesInMinilinksToApply' in deep ? deep.requiredPackagesInMinilinksToApply as Array<string> : []),
-      ...REQUIRED_PACKAGES_IN_MINILINKS
-    ],
-    applyRequiredPackagesInMinilinks: applyRequiredPackagesInMinilinks<TDeepClient>,
-    insertPosition: insertPosition<TDeepClient>,
-    makePositionInsertOperations: makePositionInsertOperations<TDeepClient>,
-    updatePosition: updatePosition<TDeepClient>,
-    getPosition: getPosition<TDeepClient>,
-    makeUpdatePositionOperations: makePositionValueUpdateOperations<TDeepClient>,
-    clearWatch: clearWatch<TDeepClient>,
-    checkPermissions: checkPermissions,
-    requestPermissions: requestPermissions,
-    watchPosition: watchPosition<TDeepClient>,
-    usePositionWatch: usePositionWatch<TDeepClient>,
-    usePosition: usePosition<TDeepClient>,
-    WithPositionWatch: WithPositionWatch<TDeepClient>,  
-  } as GeolocationDecorator<TDeepClient>, deep);
-  log({result})
-  return result
+  log({ _package });
+  const result = Object.assign(
+    {
+      "@deep-foundation/capacitor-geolocation": _package,
+      capacitorGeolocationPackage: _package,
+      requiredPackagesInMinilinksToApply: [
+        ...("requiredPackagesInMinilinksToApply" in deep
+          ? (deep.requiredPackagesInMinilinksToApply as Array<string>)
+          : []),
+        ...REQUIRED_PACKAGES_IN_MINILINKS,
+      ],
+      applyRequiredPackagesInMinilinks:
+        applyRequiredPackagesInMinilinks<TDeepClient>,
+      insertPosition: insertPosition<TDeepClient>,
+      makePositionInsertOperations: makePositionInsertOperations<TDeepClient>,
+      updatePosition: updatePosition<TDeepClient>,
+      getPosition: getPosition<TDeepClient>,
+      makeUpdatePositionOperations:
+        makePositionValueUpdateOperations<TDeepClient>,
+      clearWatch: clearWatch<TDeepClient>,
+      checkPermissions: checkPermissions,
+      requestPermissions: requestPermissions,
+      watchPosition: watchPosition<TDeepClient>,
+      usePositionWatch: usePositionWatch<TDeepClient>,
+      usePosition: usePosition<TDeepClient>,
+      WithPositionWatch: WithPositionWatch<TDeepClient>,
+    } as GeolocationDecorator<TDeepClient>,
+    deep,
+  );
+  log({ result });
+  return result;
 }
 
-export type GeolocationDecorator<TDeepClient extends DeepClientInstance = DeepClientInstance> = TDeepClient & {
-  "@deep-foundation/capacitor-geolocation": Package,
-  capacitorGeolocationPackage: Package,
-  requiredPackagesInMinilinksToApply: Array<string>
-  applyRequiredPackagesInMinilinks: typeof applyRequiredPackagesInMinilinks
-  insertPosition: typeof insertPosition
-  updatePosition: typeof updatePosition
-  makeUpdatePositionOperations: typeof makePositionValueUpdateOperations
-  makePositionInsertOperations: typeof makePositionInsertOperations
-  getPosition: typeof getPosition
-  watchPosition: typeof watchPosition
-  clearWatch: typeof clearWatch
-  checkPermissions: typeof checkPermissions
-  requestPermissions: typeof requestPermissions
-  usePositionWatch: typeof usePositionWatch
-  WithPositionWatch: typeof WithPositionWatch
-  usePosition: typeof usePosition
-}
+export type GeolocationDecorator<
+  TDeepClient extends DeepClientInstance = DeepClientInstance,
+> = TDeepClient & {
+  "@deep-foundation/capacitor-geolocation": Package;
+  capacitorGeolocationPackage: Package;
+  requiredPackagesInMinilinksToApply: Array<string>;
+  applyRequiredPackagesInMinilinks: typeof applyRequiredPackagesInMinilinks;
+  insertPosition: typeof insertPosition;
+  updatePosition: typeof updatePosition;
+  makeUpdatePositionOperations: typeof makePositionValueUpdateOperations;
+  makePositionInsertOperations: typeof makePositionInsertOperations;
+  getPosition: typeof getPosition;
+  watchPosition: typeof watchPosition;
+  clearWatch: typeof clearWatch;
+  checkPermissions: typeof checkPermissions;
+  requestPermissions: typeof requestPermissions;
+  usePositionWatch: typeof usePositionWatch;
+  WithPositionWatch: typeof WithPositionWatch;
+  usePosition: typeof usePosition;
+};

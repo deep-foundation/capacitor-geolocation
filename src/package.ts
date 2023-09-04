@@ -1,8 +1,7 @@
-
 import {
   Package as BasePackage,
   PackageOptions as BasePackageOptions,
-} from '@deep-foundation/deeplinks/imports/package.js';
+} from "@deep-foundation/deeplinks/imports/package.js";
 
 /**
 Represents a deep package
@@ -122,16 +121,14 @@ const coordsValue = package["coordsValue"].name;
 ```
 */
 export class Package extends BasePackage {
-
   constructor(param: PackageOptions) {
     super({
       ...param,
-      name: '@deep-foundation/capacitor-geolocation',
+      name: "@deep-foundation/capacitor-geolocation",
     });
   }
 
-
-      /**
+  /**
       @example
       #### Use id method to get the id of the Position link
       ```ts
@@ -149,8 +146,8 @@ export class Package extends BasePackage {
       const position = await package["Position"].name;
       ```
       */
-      public "Position" = this.createEntity("Position");
-      /**
+  public "Position" = this.createEntity("Position");
+  /**
       @example
       #### Use id method to get the id of the handleUpdatePosition link
       ```ts
@@ -168,8 +165,8 @@ export class Package extends BasePackage {
       const handleUpdatePosition = await package["handleUpdatePosition"].name;
       ```
       */
-      public "handleUpdatePosition" = this.createEntity("handleUpdatePosition");
-      /**
+  public "handleUpdatePosition" = this.createEntity("handleUpdatePosition");
+  /**
       @example
       #### Use id method to get the id of the positionValue link
       ```ts
@@ -187,8 +184,8 @@ export class Package extends BasePackage {
       const positionValue = await package["positionValue"].name;
       ```
       */
-      public "positionValue" = this.createEntity("positionValue");
-      /**
+  public "positionValue" = this.createEntity("positionValue");
+  /**
       @example
       #### Use id method to get the id of the Timestamp link
       ```ts
@@ -206,8 +203,8 @@ export class Package extends BasePackage {
       const timestamp = await package["Timestamp"].name;
       ```
       */
-      public "Timestamp" = this.createEntity("Timestamp");
-      /**
+  public "Timestamp" = this.createEntity("Timestamp");
+  /**
       @example
       #### Use id method to get the id of the timestampValue link
       ```ts
@@ -225,8 +222,8 @@ export class Package extends BasePackage {
       const timestampValue = await package["timestampValue"].name;
       ```
       */
-      public "timestampValue" = this.createEntity("timestampValue");
-      /**
+  public "timestampValue" = this.createEntity("timestampValue");
+  /**
       @example
       #### Use id method to get the id of the PositionTree link
       ```ts
@@ -244,8 +241,8 @@ export class Package extends BasePackage {
       const positionTree = await package["PositionTree"].name;
       ```
       */
-      public "PositionTree" = this.createEntity("PositionTree");
-      /**
+  public "PositionTree" = this.createEntity("PositionTree");
+  /**
       @example
       #### Use id method to get the id of the SpeedValue link
       ```ts
@@ -263,8 +260,8 @@ export class Package extends BasePackage {
       const speedValue = await package["SpeedValue"].name;
       ```
       */
-      public "SpeedValue" = this.createEntity("SpeedValue");
-      /**
+  public "SpeedValue" = this.createEntity("SpeedValue");
+  /**
       @example
       #### Use id method to get the id of the Speed link
       ```ts
@@ -282,8 +279,8 @@ export class Package extends BasePackage {
       const speed = await package["Speed"].name;
       ```
       */
-      public "Speed" = this.createEntity("Speed");
-      /**
+  public "Speed" = this.createEntity("Speed");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentSpeed link
       ```ts
@@ -301,8 +298,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentSpeed = await package["TreeIncludeFromCurrentSpeed"].name;
       ```
       */
-      public "TreeIncludeFromCurrentSpeed" = this.createEntity("TreeIncludeFromCurrentSpeed");
-      /**
+  public "TreeIncludeFromCurrentSpeed" = this.createEntity(
+    "TreeIncludeFromCurrentSpeed",
+  );
+  /**
       @example
       #### Use id method to get the id of the HeadingValue link
       ```ts
@@ -320,8 +319,8 @@ export class Package extends BasePackage {
       const headingValue = await package["HeadingValue"].name;
       ```
       */
-      public "HeadingValue" = this.createEntity("HeadingValue");
-      /**
+  public "HeadingValue" = this.createEntity("HeadingValue");
+  /**
       @example
       #### Use id method to get the id of the Heading link
       ```ts
@@ -339,8 +338,8 @@ export class Package extends BasePackage {
       const heading = await package["Heading"].name;
       ```
       */
-      public "Heading" = this.createEntity("Heading");
-      /**
+  public "Heading" = this.createEntity("Heading");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentHeading link
       ```ts
@@ -358,8 +357,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentHeading = await package["TreeIncludeFromCurrentHeading"].name;
       ```
       */
-      public "TreeIncludeFromCurrentHeading" = this.createEntity("TreeIncludeFromCurrentHeading");
-      /**
+  public "TreeIncludeFromCurrentHeading" = this.createEntity(
+    "TreeIncludeFromCurrentHeading",
+  );
+  /**
       @example
       #### Use id method to get the id of the AccuracyValue link
       ```ts
@@ -377,8 +378,8 @@ export class Package extends BasePackage {
       const accuracyValue = await package["AccuracyValue"].name;
       ```
       */
-      public "AccuracyValue" = this.createEntity("AccuracyValue");
-      /**
+  public "AccuracyValue" = this.createEntity("AccuracyValue");
+  /**
       @example
       #### Use id method to get the id of the Accuracy link
       ```ts
@@ -396,8 +397,8 @@ export class Package extends BasePackage {
       const accuracy = await package["Accuracy"].name;
       ```
       */
-      public "Accuracy" = this.createEntity("Accuracy");
-      /**
+  public "Accuracy" = this.createEntity("Accuracy");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentAccuracy link
       ```ts
@@ -415,8 +416,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentAccuracy = await package["TreeIncludeFromCurrentAccuracy"].name;
       ```
       */
-      public "TreeIncludeFromCurrentAccuracy" = this.createEntity("TreeIncludeFromCurrentAccuracy");
-      /**
+  public "TreeIncludeFromCurrentAccuracy" = this.createEntity(
+    "TreeIncludeFromCurrentAccuracy",
+  );
+  /**
       @example
       #### Use id method to get the id of the AltitudeValue link
       ```ts
@@ -434,8 +437,8 @@ export class Package extends BasePackage {
       const altitudeValue = await package["AltitudeValue"].name;
       ```
       */
-      public "AltitudeValue" = this.createEntity("AltitudeValue");
-      /**
+  public "AltitudeValue" = this.createEntity("AltitudeValue");
+  /**
       @example
       #### Use id method to get the id of the Altitude link
       ```ts
@@ -453,8 +456,8 @@ export class Package extends BasePackage {
       const altitude = await package["Altitude"].name;
       ```
       */
-      public "Altitude" = this.createEntity("Altitude");
-      /**
+  public "Altitude" = this.createEntity("Altitude");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentAltitude link
       ```ts
@@ -472,8 +475,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentAltitude = await package["TreeIncludeFromCurrentAltitude"].name;
       ```
       */
-      public "TreeIncludeFromCurrentAltitude" = this.createEntity("TreeIncludeFromCurrentAltitude");
-      /**
+  public "TreeIncludeFromCurrentAltitude" = this.createEntity(
+    "TreeIncludeFromCurrentAltitude",
+  );
+  /**
       @example
       #### Use id method to get the id of the LatitudeValue link
       ```ts
@@ -491,8 +496,8 @@ export class Package extends BasePackage {
       const latitudeValue = await package["LatitudeValue"].name;
       ```
       */
-      public "LatitudeValue" = this.createEntity("LatitudeValue");
-      /**
+  public "LatitudeValue" = this.createEntity("LatitudeValue");
+  /**
       @example
       #### Use id method to get the id of the Latitude link
       ```ts
@@ -510,8 +515,8 @@ export class Package extends BasePackage {
       const latitude = await package["Latitude"].name;
       ```
       */
-      public "Latitude" = this.createEntity("Latitude");
-      /**
+  public "Latitude" = this.createEntity("Latitude");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentLatitude link
       ```ts
@@ -529,8 +534,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentLatitude = await package["TreeIncludeFromCurrentLatitude"].name;
       ```
       */
-      public "TreeIncludeFromCurrentLatitude" = this.createEntity("TreeIncludeFromCurrentLatitude");
-      /**
+  public "TreeIncludeFromCurrentLatitude" = this.createEntity(
+    "TreeIncludeFromCurrentLatitude",
+  );
+  /**
       @example
       #### Use id method to get the id of the LongitudeValue link
       ```ts
@@ -548,8 +555,8 @@ export class Package extends BasePackage {
       const longitudeValue = await package["LongitudeValue"].name;
       ```
       */
-      public "LongitudeValue" = this.createEntity("LongitudeValue");
-      /**
+  public "LongitudeValue" = this.createEntity("LongitudeValue");
+  /**
       @example
       #### Use id method to get the id of the Longitude link
       ```ts
@@ -567,8 +574,8 @@ export class Package extends BasePackage {
       const longitude = await package["Longitude"].name;
       ```
       */
-      public "Longitude" = this.createEntity("Longitude");
-      /**
+  public "Longitude" = this.createEntity("Longitude");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentLongitude link
       ```ts
@@ -586,8 +593,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentLongitude = await package["TreeIncludeFromCurrentLongitude"].name;
       ```
       */
-      public "TreeIncludeFromCurrentLongitude" = this.createEntity("TreeIncludeFromCurrentLongitude");
-      /**
+  public "TreeIncludeFromCurrentLongitude" = this.createEntity(
+    "TreeIncludeFromCurrentLongitude",
+  );
+  /**
       @example
       #### Use id method to get the id of the AltitudeAccuracyValue link
       ```ts
@@ -605,8 +614,8 @@ export class Package extends BasePackage {
       const altitudeAccuracyValue = await package["AltitudeAccuracyValue"].name;
       ```
       */
-      public "AltitudeAccuracyValue" = this.createEntity("AltitudeAccuracyValue");
-      /**
+  public "AltitudeAccuracyValue" = this.createEntity("AltitudeAccuracyValue");
+  /**
       @example
       #### Use id method to get the id of the AltitudeAccuracy link
       ```ts
@@ -624,8 +633,8 @@ export class Package extends BasePackage {
       const altitudeAccuracy = await package["AltitudeAccuracy"].name;
       ```
       */
-      public "AltitudeAccuracy" = this.createEntity("AltitudeAccuracy");
-      /**
+  public "AltitudeAccuracy" = this.createEntity("AltitudeAccuracy");
+  /**
       @example
       #### Use id method to get the id of the TreeIncludeFromCurrentAltitudeAccuracy link
       ```ts
@@ -643,8 +652,10 @@ export class Package extends BasePackage {
       const treeIncludeFromCurrentAltitudeAccuracy = await package["TreeIncludeFromCurrentAltitudeAccuracy"].name;
       ```
       */
-      public "TreeIncludeFromCurrentAltitudeAccuracy" = this.createEntity("TreeIncludeFromCurrentAltitudeAccuracy");
-      /**
+  public "TreeIncludeFromCurrentAltitudeAccuracy" = this.createEntity(
+    "TreeIncludeFromCurrentAltitudeAccuracy",
+  );
+  /**
       @example
       #### Use id method to get the id of the Coords link
       ```ts
@@ -662,8 +673,8 @@ export class Package extends BasePackage {
       const coords = await package["Coords"].name;
       ```
       */
-      public "Coords" = this.createEntity("Coords");
-      /**
+  public "Coords" = this.createEntity("Coords");
+  /**
       @example
       #### Use id method to get the id of the handleUpdateCoords link
       ```ts
@@ -681,8 +692,8 @@ export class Package extends BasePackage {
       const handleUpdateCoords = await package["handleUpdateCoords"].name;
       ```
       */
-      public "handleUpdateCoords" = this.createEntity("handleUpdateCoords");
-      /**
+  public "handleUpdateCoords" = this.createEntity("handleUpdateCoords");
+  /**
       @example
       #### Use id method to get the id of the coordsValue link
       ```ts
@@ -700,8 +711,7 @@ export class Package extends BasePackage {
       const coordsValue = await package["coordsValue"].name;
       ```
       */
-      public "coordsValue" = this.createEntity("coordsValue");
-
+  public "coordsValue" = this.createEntity("coordsValue");
 }
 
-export type PackageOptions = Omit<BasePackageOptions, 'name'>;
+export type PackageOptions = Omit<BasePackageOptions, "name">;

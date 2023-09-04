@@ -25,4 +25,3 @@ jobs:
         git config --global user.email "freephoenix888@gmail.com"
         git config --global user.name "freephoenix888"
         npm run documentation:generate
-        

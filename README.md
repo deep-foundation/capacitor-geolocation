@@ -19,8 +19,9 @@ Provides links based on [`@capacitor/geolocation`](https://www.npmjs.com/package
 # Geolocation Object Value
 
 The [`Position`] link can have object value.  
-No one field is required. You can add any fields as you want. Only the fields that are supported by this package will be represented as links  
-- [**Supported fields can be found in the `Geolocation` interface**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html)  
+No one field is required. You can add any fields as you want. Only the fields that are supported by this package will be represented as links
+
+- [**Supported fields can be found in the `Geolocation` interface**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html)
 - [**Example of Geolocation Object Value**](https://deep-foundation.github.io/capacitor-geolocation/types/GeolocationInfo.html#md:geolocation-info-example)
 
 # Update Handling
@@ -28,13 +29,14 @@ No one field is required. You can add any fields as you want. Only the fields th
 [`Position`] updates are handled by the [`UpdateHandler`](https://freephoenix888.github.io/object-to-links-async-converter/classes/Package.html#UpdateHandler) to represent [`Position`] object value as links
 
 # Library
+
 ## Library Usage
+
 See [Documentation] for examples and API
 
 # Contribution
 
 Feel free to contribute. Please fork the repository and submit a pull request for any bugs, improvements, or features.
-
 
 [`Position`]: https://deep-foundation.github.io/capacitor-geolocation/classes/Package.html#Position
 [Documentation]: https://deep-foundation.github.io/capacitor-geolocation/
