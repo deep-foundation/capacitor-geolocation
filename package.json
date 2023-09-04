@@ -15,7 +15,11 @@
     "npm-release": "npm-release",
     "library:build:generate-package-class": "generate-package-class",
     "documentation:generate": "ts-node --esm ./automation/documentation/generate.ts",
-    "library:documentation:generate": "typedoc ./src/main.ts"
+    "library:documentation:generate": "typedoc ./src/main.ts",
+    "prettier:check": "prettier . --check --ignore-unknown",
+    "prettier:write": "prettier . --write --ignore-unknown",
+    "prepare": "husky install",
+    "lint:fix": "eslint . --fix"
   },
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -35,6 +39,8 @@
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.4.2",
     "fs-extra": "^11.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
     "typescript": "5.0.4"
   },
@@ -43,5 +49,8 @@
     "@chakra-ui/react": "^2.8.0",
     "@deep-foundation/deeplinks": "~0.0.291",
     "react": "^18.2.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
