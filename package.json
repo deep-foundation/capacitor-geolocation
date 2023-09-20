@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",
-    "@deep-foundation/npm-automation": "^18.1.4",
+    "@deep-foundation/npm-automation": "^18.1.9",
     "@types/debug": "^4.1.8",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.4.2",
