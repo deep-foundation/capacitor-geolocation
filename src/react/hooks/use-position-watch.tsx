@@ -4,29 +4,33 @@ import { WatchPositionOptions } from "../../watch-position.js";
 import { GeolocationDecorator } from "../../create-geolocation-decorator.js";
 import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
 
-export function usePositionWatch<TDeepClient extends DeepClientInstance>(
-  this: GeolocationDecorator<TDeepClient>,
-  options: UsePositionWatchOptions,
-): UsePositionWatchResult {
+export function usePositionWatch<
+  TDeepClient extends DeepClientInstance = DeepClientInstance,
+>(options: UsePositionWatchOptions<TDeepClient>): UsePositionWatchResult {
   const log = debug(
     `@deep-foundation/capacitor-geolocation:${usePositionWatch.name}`,
   );
   log({ options });
+  const { deep } = options;
   const [watchId, setWatchId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    this.watchPosition(options).then((watchId) => {
+    deep.watchPosition(options).then((watchId) => {
       log({ watchId });
       setWatchId(watchId);
     });
 
     return () => {
       if (watchId) {
-        this.clearWatch({ id: watchId });
+        deep.clearWatch({ id: watchId });
       }
     };
   }, []);
 }
 
-export type UsePositionWatchOptions = WatchPositionOptions;
+export type UsePositionWatchOptions<
+  TDeepClient extends DeepClientInstance = DeepClientInstance,
+> = WatchPositionOptions & {
+  deep: GeolocationDecorator<TDeepClient>;
+};
 export type UsePositionWatchResult = void;
