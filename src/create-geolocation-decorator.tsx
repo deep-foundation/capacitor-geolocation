@@ -29,14 +29,14 @@ await geolocationDeepDecorator.applyRequiredPackagesInMinilinks();
  */
 export function createGeolocationDecorator<
   TDeepClient extends DeepClientInstance,
->(deep: TDeepClient) {
+>(deep: TDeepClient): GeolocationDecorator<TDeepClient> {
   const log = debug(
     `@deep-foundation/capacitor-geolocation:${createGeolocationDecorator.name}`,
   );
   log({ deep });
   const _package = new Package({ deep });
   log({ _package });
-  const result: GeolocationDecorator = {
+  const result: GeolocationDecorator<TDeepClient> = {
     ...deep,
     "@deep-foundation/capacitor-geolocation": _package,
     capacitorGeolocationPackage: _package,
