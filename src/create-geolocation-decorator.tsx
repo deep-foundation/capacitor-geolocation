@@ -36,32 +36,31 @@ export function createGeolocationDecorator<
   log({ deep });
   const _package = new Package({ deep });
   log({ _package });
-  const result = Object.assign(
-    {
-      "@deep-foundation/capacitor-geolocation": _package,
-      capacitorGeolocationPackage: _package,
-      requiredPackagesInMinilinksToApply: [
-        ...("requiredPackagesInMinilinksToApply" in deep
-          ? (deep.requiredPackagesInMinilinksToApply as Array<string>)
-          : []),
-        ...REQUIRED_PACKAGES_IN_MINILINKS,
-      ],
-      applyRequiredPackagesInMinilinks: applyRequiredPackagesInMinilinks,
-      insertPosition: insertPosition,
-      makePositionInsertOperations: makePositionInsertOperations,
-      updatePosition: updatePosition,
-      getPosition: getPosition,
-      makeUpdatePositionOperations: makePositionValueUpdateOperations,
-      clearWatch: clearWatch,
-      checkPermissions: checkPermissions,
-      requestPermissions: requestPermissions,
-      watchPosition: watchPosition,
-      usePositionWatch: usePositionWatch,
-      usePosition: usePosition,
-      WithPositionWatch: WithPositionWatch,
-    } as GeolocationDecorator,
-    deep,
-  );
+  const result: GeolocationDecorator = {
+    ...deep,
+    "@deep-foundation/capacitor-geolocation": _package,
+    capacitorGeolocationPackage: _package,
+    requiredPackagesInMinilinksToApply: [
+      ...("requiredPackagesInMinilinksToApply" in deep
+        ? (deep.requiredPackagesInMinilinksToApply as Array<string>)
+        : []),
+      ...REQUIRED_PACKAGES_IN_MINILINKS,
+    ],
+    applyRequiredPackagesInMinilinks: applyRequiredPackagesInMinilinks,
+    insertPosition: insertPosition,
+    makePositionInsertOperations: makePositionInsertOperations,
+    updatePosition: updatePosition,
+    getPosition: getPosition,
+    makeUpdatePositionOperations: makePositionValueUpdateOperations,
+    clearWatch: clearWatch,
+    checkPermissions: checkPermissions,
+    requestPermissions: requestPermissions,
+    watchPosition: watchPosition,
+    usePositionWatch: usePositionWatch,
+    usePosition: usePosition,
+    WithPositionWatch: WithPositionWatch,
+  };
+  Object.setPrototypeOf(result, Object.getPrototypeOf(deep));
   log({ result });
   return result;
 }
