@@ -10,11 +10,11 @@
   "type": "module",
   "scripts": {
     "library:build:clean": "fse remove dist && npm run library:build:dirty",
-    "library:build:dirty": "ts-node  ./automation/library/build.ts",
+    "library:build:dirty": "npx ./automation/library/build.ts && node ./automation/library/build.js",
     "npm-pull": "npm-pull",
     "npm-release": "npm-release",
     "library:build:generate-package-class": "generate-package-class",
-    "documentation:generate": "ts-node  ./automation/documentation/generate.ts",
+    "documentation:generate": "npx tsc ./automation/documentation/generate.ts && node ./automation/documentation/generate.js",
     "library:documentation:generate": "typedoc ./src/main.ts",
     "prettier:check": "prettier . --check --ignore-unknown",
     "prettier:write": "prettier . --write --ignore-unknown",
