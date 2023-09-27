@@ -17,7 +17,10 @@ export {
   usePermissionsRequest,
   usePermissionsRequest as useGeolocationPermissionsRequest,
 } from "./react/hooks/use-permissions-request.js";
-export { usePermissionsStatus } from "./react/hooks/use-permissions-status.js";
+export {
+  usePermissionsStatus,
+  usePermissionsStatus as useGeolocationPermissionsStatus,
+} from "./react/hooks/use-permissions-status.js";
 
 export { applyRequiredPackagesInMinilinks } from "./apply-required-packages-in-minilinks.js";
 export { checkPermissions } from "./check-permissions.js";
