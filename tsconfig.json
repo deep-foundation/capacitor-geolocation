@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "removeComments": true,
     "jsx": "react-jsx",
-    "module": "NodeNext",
-    "rootDir": "./src",
-    "resolveJsonModule": true,
-    "declaration": true,
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "es2015",
     "skipLibCheck": true,
-    "moduleResolution": "NodeNext",
-    "strictNullChecks": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+    "lib": ["dom", "es6", "es7", "ES2020", "es2022.error"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true
+  }
 }
