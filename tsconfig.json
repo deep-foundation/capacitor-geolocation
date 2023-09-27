@@ -1,6 +1,19 @@
 {
-  "extends": [
-    "@tsconfig/node18/tsconfig.json",
-    "@tsconfig/create-react-app/tsconfig.json"
-  ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "NodeNext",
+    "strictNullChecks": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
