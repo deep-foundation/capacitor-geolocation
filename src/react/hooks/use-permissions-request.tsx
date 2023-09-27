@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  requestPermissions,
-  PermissionStatus,
-} from "../../request-permissions.js";
+import { requestPermissions } from "../../request-permissions.js";
+import { PermissionStatus } from "../../permission-status.js";
 
 export function usePermissionsRequest() {
   const [permissionsState, setPermissionsState] = useState<

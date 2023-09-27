@@ -1,4 +1,4 @@
-import { PermissionStatus } from "../../request-permissions.js";
+import { PermissionStatus } from "../../permission-status.js";
 import { usePermissionsStatus } from "../hooks/use-permissions-status.js";
 
 export function WithPermissionsStatus(options: WithPermissionsStatusOptions) {
