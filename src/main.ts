@@ -2,13 +2,13 @@
 export {
   WithPermissions,
   WithPermissions as WithGeolocationPermissions,
-  WithPermissionsOptions,
-  WithPermissionsOptions as WithGeolocationPermissionsOptions,
+  type WithPermissionsOptions,
+  type WithPermissionsOptions as WithGeolocationPermissionsOptions,
 } from "./react/components/with-permissions.js";
 export {
   WithPermissionsStatus,
-  WithPermissionsStatusOptions,
-  WithPermissionsStatusOptions as WithGeolocationPermissionsStatusOptions,
+  type WithPermissionsStatusOptions,
+  type WithPermissionsStatusOptions as WithGeolocationPermissionsStatusOptions,
   WithPermissionsStatus as WithGeolocationPermissionsStatus,
 } from "./react/components/with-permissions-status.js";
 
@@ -28,8 +28,8 @@ export { clearWatch } from "./clear-watch.js";
 export {
   createGeolocationDecorator,
   createGeolocationDecorator as createDecorator,
-  GeolocationDecorator,
-  GeolocationDecorator as Decorator,
+  type GeolocationDecorator,
+  type GeolocationDecorator as Decorator,
 } from "./create-geolocation-decorator.js";
 export { getPosition } from "./get-position.js";
 export { insertPosition } from "./insert-position.js";
