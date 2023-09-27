@@ -4,7 +4,7 @@ import {
   PermissionStatus as CapacitorPermissionStatus,
 } from "@capacitor/geolocation";
 import debug from "debug";
-import { PermissionStatus } from "./permission-status";
+import { PermissionStatus } from "./permission-status.js";
 
 export async function requestPermissions(): RequestPermissionsResult {
   const log = debug(
