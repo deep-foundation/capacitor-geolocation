@@ -1,4 +1,8 @@
-import { Geolocation, GeolocationPlugin } from "@capacitor/geolocation";
+import {
+  Geolocation,
+  GeolocationPlugin,
+  PermissionStatus as CapacitorPermissionStatus,
+} from "@capacitor/geolocation";
 import debug from "debug";
 
 export async function requestPermissions(): RequestPermissionsResult {
@@ -10,6 +14,6 @@ export async function requestPermissions(): RequestPermissionsResult {
   return permissionsStatus;
 }
 
-export type RequestPermissionsResult = ReturnType<
-  GeolocationPlugin["requestPermissions"]
->;
+export type RequestPermissionsResult = Promise<PermissionStatus>;
+
+export type PermissionStatus = CapacitorPermissionStatus;

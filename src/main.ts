@@ -1,3 +1,17 @@
+// react/components
+export {
+  WithPermissions,
+  WithPermissions as WithGeolocationPermissions,
+  WithPermissionsOptions,
+  WithPermissionsOptions as WithGeolocationPermissionsOptions,
+} from "./react/components/with-permissions.js";
+
+// react/hooks
+export {
+  usePermissionsRequest,
+  usePermissionsRequest as useGeolocationPermissionsRequest,
+} from "./react/hooks/use-permissions-request.js";
+
 export { applyRequiredPackagesInMinilinks } from "./apply-required-packages-in-minilinks.js";
 export { checkPermissions } from "./check-permissions.js";
 export { clearWatch } from "./clear-watch.js";
