@@ -29,13 +29,16 @@
   ],
   "dependencies": {
     "@deep-foundation/core": "~0.0.2",
+    "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0",
     "@freephoenix888/object-to-links-async-converter": "~0.0.10",
-    "debug": "^4.3.4",
-    "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0"
+    "debug": "^4.3.4"
   },
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",
     "@deep-foundation/npm-automation": "^18.1.10",
+    "@tsconfig/create-react-app": "^2.0.1",
+    "@tsconfig/node18": "^18.2.2",
+    "@tsconfig/recommended": "^1.0.3",
     "@types/debug": "^4.1.8",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.4.2",
@@ -43,7 +46,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
-    "typescript": "5.0.4"
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
     "@capacitor/geolocation": "^5.0.6",
