@@ -5,6 +5,12 @@ export {
   WithPermissionsOptions,
   WithPermissionsOptions as WithGeolocationPermissionsOptions,
 } from "./react/components/with-permissions.js";
+export {
+  WithPermissionsStatus,
+  WithPermissionsStatusOptions,
+  WithPermissionsStatusOptions as WithGeolocationPermissionsStatusOptions,
+  WithPermissionsStatus as WithGeolocationPermissionsStatus,
+} from "./react/components/with-permissions-status.js";
 
 // react/hooks
 export {
