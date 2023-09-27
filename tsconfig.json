@@ -8,7 +8,7 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "node",
-    "target": "ESNext",
+    "target": "es2015",
     "skipLibCheck": true,
     "lib": ["dom", "es6", "es7", "ES2020", "es2022.error"],
     "resolveJsonModule": true,
