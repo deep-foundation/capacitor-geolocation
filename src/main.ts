@@ -40,3 +40,7 @@ export { requestPermissions } from "./request-permissions.js";
 export { REQUIRED_PACKAGES_IN_MINILINKS } from "./required-packages-in-minilnks.js";
 export { updatePosition } from "./update-position.js";
 export { watchPosition } from "./watch-position.js";
+export {
+  WithOperatingSystemChecking,
+  WithOperatingSystemCheckingOptions,
+} from "./react/components/with-operating-system-checking.js";
