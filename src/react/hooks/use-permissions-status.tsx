@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { checkPermissions } from "../../check-permissions.js";
 import { PermissionStatus } from "../../permission-status.js";
 
-export function usePermissionsStatus() {
+export function usePermissionsStatus(): UsePermissionsStatusResult {
   const [permissionsStatus, setPermissionsStatus] = useState<
     PermissionStatus | undefined
   >(undefined);
@@ -17,7 +17,12 @@ export function usePermissionsStatus() {
   }, []);
 
   return {
-    ...permissionsStatus,
+    permissionsStatus,
     isLoading,
   };
 }
+
+export type UsePermissionsStatusResult = {
+  permissionsStatus: PermissionStatus | undefined;
+  isLoading: boolean;
+};

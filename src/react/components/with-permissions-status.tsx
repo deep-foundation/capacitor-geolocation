@@ -1,5 +1,8 @@
 import { PermissionStatus } from "../../permission-status.js";
-import { usePermissionsStatus } from "../hooks/use-permissions-status.js";
+import {
+  UsePermissionsStatusResult,
+  usePermissionsStatus,
+} from "../hooks/use-permissions-status.js";
 
 export function WithPermissionsStatus(options: WithPermissionsStatusOptions) {
   const permissionsStatus = usePermissionsStatus();
@@ -7,21 +10,21 @@ export function WithPermissionsStatus(options: WithPermissionsStatusOptions) {
   if ("render" in options) {
     return options.render(permissionsStatus);
   } else {
-    if (permissionsStatus === undefined) {
+    if (permissionsStatus.isLoading) {
       return options.renderIfLoading();
     } else if (
-      permissionsStatus.coarseLocation === "granted" &&
-      permissionsStatus.location === "granted"
+      permissionsStatus.permissionsStatus!.coarseLocation === "granted" &&
+      permissionsStatus.permissionsStatus!.location === "granted"
     ) {
       return options.renderIfGranted();
     } else if (
-      permissionsStatus.coarseLocation === "denied" &&
-      permissionsStatus.location === "denied"
+      permissionsStatus.permissionsStatus!.coarseLocation === "denied" &&
+      permissionsStatus.permissionsStatus!.location === "denied"
     ) {
       return options.renderIfDenied();
     } else if (
-      permissionsStatus.coarseLocation === "prompt" &&
-      permissionsStatus.location === "prompt"
+      permissionsStatus.permissionsStatus!.coarseLocation === "prompt" &&
+      permissionsStatus.permissionsStatus!.location === "prompt"
     ) {
       return options.renderIfPrompt();
     }
@@ -36,5 +39,5 @@ export type WithPermissionsStatusOptions =
       renderIfPrompt: () => JSX.Element;
     }
   | {
-      render: (permissionsStatus: PermissionStatus | undefined) => JSX.Element;
+      render: (permissionsStatus: UsePermissionsStatusResult) => JSX.Element;
     };
