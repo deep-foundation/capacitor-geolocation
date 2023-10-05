@@ -1,5 +1,6 @@
 import { DeviceInfo, Device } from "@capacitor/device";
 import { useState, useEffect } from "react";
+import { useSupportedOperatingSystem } from "../hooks/use-operating-system-checking.js";
 
 export function WithOperatingSystemChecking(
   options: WithOperatingSystemCheckingOptions,
@@ -9,15 +10,11 @@ export function WithOperatingSystemChecking(
     DeviceInfo["operatingSystem"] | undefined
   >(undefined);
 
-  useEffect(() => {
-    Device.getInfo().then((deviceInfo) => {
-      setOperatingSystem(deviceInfo.operatingSystem);
-    });
-  }, []);
+  const { isLoading, isSupported } = useSupportedOperatingSystem();
 
-  if (operatingSystem === undefined) {
+  if (isLoading) {
     return renderIfLoading();
-  } else if (operatingSystem === "android" || operatingSystem === "ios") {
+  } else if (isSupported) {
     return renderIfSupported();
   } else {
     return renderIfNotSupported();
