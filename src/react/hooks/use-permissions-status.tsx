@@ -7,9 +7,17 @@ export function usePermissionsStatus() {
     PermissionStatus | undefined
   >(undefined);
 
-  useEffect(() => {
-    checkPermissions().then(setPermissionsStatus);
-  });
+  const [isLoading, setIsLoading] = useState(true);
 
-  return permissionsStatus;
+  useEffect(() => {
+    checkPermissions().then((permissionsStatus) => {
+      setPermissionsStatus(permissionsStatus);
+      setIsLoading(false);
+    });
+  }, []);
+
+  return {
+    ...permissionsStatus,
+    isLoading,
+  };
 }
