@@ -29,9 +29,9 @@
   ],
   "dependencies": {
     "@deep-foundation/core": "~0.0.2",
+    "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0",
     "@freephoenix888/object-to-links-async-converter": "~0.0.10",
-    "debug": "^4.3.4",
-    "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0"
+    "debug": "^4.3.4"
   },
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",
@@ -43,15 +43,15 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
-    "typescript": "5.0.4"
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/device": "^5.0.6",
     "@capacitor/geolocation": "^5.0.6",
     "@chakra-ui/react": "^2.8.0",
     "@deep-foundation/deeplinks": "~0.0.291",
-    "react": "^18.2.0",
-    "@capacitor/device": "^5.0.6",
-    "@capacitor/app": "^5.0.6"
+    "react": "^18.2.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
