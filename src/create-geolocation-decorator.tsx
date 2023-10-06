@@ -4,7 +4,7 @@ import debug from "debug";
 import { usePosition } from "./react/hooks/use-position.js";
 import { watchPosition } from "./watch-position.js";
 import { usePositionWatch } from "./react/hooks/use-position-watch.js";
-import { WithPositionWatch } from "./react/components/with-position-watch.js";
+import { WithPositionSync } from "./react/components/with-position-sync.js";
 import { checkPermissions } from "./check-permissions.js";
 import { makePositionValueUpdateOperations } from "./make-position-value-update-operations.js";
 import { requestPermissions } from "./request-permissions.js";
@@ -58,7 +58,7 @@ export function createGeolocationDecorator<
     watchPosition: watchPosition,
     usePositionWatch: usePositionWatch,
     usePosition: usePosition,
-    WithPositionWatch: WithPositionWatch,
+    WithPositionWatch: WithPositionSync,
   };
   Object.setPrototypeOf(result, Object.getPrototypeOf(deep));
   log({ result });
@@ -82,6 +82,6 @@ export type GeolocationDecorator<
   checkPermissions: typeof checkPermissions;
   requestPermissions: typeof requestPermissions;
   usePositionWatch: typeof usePositionWatch;
-  WithPositionWatch: typeof WithPositionWatch;
+  WithPositionWatch: typeof WithPositionSync;
   usePosition: typeof usePosition;
 };

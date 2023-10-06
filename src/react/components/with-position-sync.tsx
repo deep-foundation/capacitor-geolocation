@@ -5,7 +5,7 @@ import {
   usePositionWatch,
 } from "../hooks/use-position-watch.js";
 
-export function WithPositionWatch<
+export function WithPositionSync<
   TDeepClient extends DeepClientInstance = DeepClientInstance,
 >(options: WithPositionWatchOptions<TDeepClient>): WithPositionWatchResult {
   const { children, deep } = options;

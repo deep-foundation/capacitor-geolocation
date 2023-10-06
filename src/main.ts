@@ -11,6 +11,11 @@ export {
   type WithPermissionsStatusOptions as WithGeolocationPermissionsStatusOptions,
   WithPermissionsStatus as WithGeolocationPermissionsStatus,
 } from "./react/components/with-permissions-status.js";
+export {
+  WithPositionSync,
+  WithPositionWatchOptions,
+  WithPositionWatchResult,
+} from "./react/components/with-position-sync.js";
 
 // react/hooks
 export {
