@@ -13,7 +13,26 @@ export async function watchPosition<TDeepClient extends DeepClientInstance>(
       if (error) {
         throw error;
       }
-      await this.insertPosition({ position, containerLinkId });
+      const {
+        data: [positionLink],
+      } = await this.select({
+        type_id: this.capacitorGeolocationPackage.Position.idLocal(),
+        in: {
+          type_id: {
+            _id: ["@deep-foundation/core", "Contain"],
+          },
+          from_id: containerLinkId,
+        },
+      });
+      if (positionLink) {
+        await this.updatePosition({
+          position,
+          id: positionLink.id,
+        });
+        return;
+      } else {
+        await this.insertPosition({ position, containerLinkId });
+      }
     },
   );
 }
