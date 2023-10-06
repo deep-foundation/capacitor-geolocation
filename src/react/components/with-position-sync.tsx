@@ -10,7 +10,7 @@ export function WithPositionSync<
 >(options: WithPositionWatchOptions<TDeepClient>): WithPositionWatchResult {
   const { children, deep } = options;
 
-  usePositionWatch(options);
+  deep.usePositionWatch(options);
 
   return children ?? null;
 }
