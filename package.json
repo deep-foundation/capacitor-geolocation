@@ -50,7 +50,8 @@
     "@chakra-ui/react": "^2.8.0",
     "@deep-foundation/deeplinks": "~0.0.291",
     "react": "^18.2.0",
-    "@capacitor/device": "^5.0.6"
+    "@capacitor/device": "^5.0.6",
+    "@capacitor/app": "^5.0.6"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
