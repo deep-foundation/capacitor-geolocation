@@ -21,7 +21,7 @@ export function usePermissionsStatus(): UsePermissionsStatusResult {
     const resumeListener = App.addListener("resume", updatePermissionsStatus);
 
     return () => {
-      resumeListener.remove();
+      resumeListener.then((resumeListener) => resumeListener.remove());
     };
   }, []);
 
