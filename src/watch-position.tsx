@@ -1,20 +1,25 @@
 import { Geolocation, GeolocationPlugin } from "@capacitor/geolocation";
 import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
+import { packageLog } from "./package-log.js";
 
 export async function watchPosition<TDeepClient extends DeepClientInstance>(
   this: GeolocationDecorator<TDeepClient>,
   options: WatchPositionOptions,
 ): WatchPositionResult {
+  const log = packageLog.extend(watchPosition.name);
+  log({ options });
   const { containerLinkId, watchPositionOptions = {} } = options;
   return await Geolocation.watchPosition(
     watchPositionOptions,
     async (position, error) => {
+      const callbackLog = log.extend("callback");
+      callbackLog({ position, error });
       if (error) {
         throw error;
       }
       const {
-        data: [positionLink],
+        data: [positionLinkFromSelect],
       } = await this.select({
         type_id: this.capacitorGeolocationPackage.Position.idLocal(),
         in: {
@@ -24,10 +29,11 @@ export async function watchPosition<TDeepClient extends DeepClientInstance>(
           from_id: containerLinkId,
         },
       });
-      if (positionLink) {
+      callbackLog({ positionLinkFromSelect });
+      if (positionLinkFromSelect) {
         await this.updatePosition({
           position,
-          id: positionLink.id,
+          id: positionLinkFromSelect.id,
         });
         return;
       } else {

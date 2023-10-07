@@ -2,14 +2,13 @@ import debug from "debug";
 import { GeolocationDecorator } from "./create-geolocation-decorator.js";
 import { DeepClientInstance } from "@deep-foundation/deeplinks/imports/client.js";
 import { Position } from "@capacitor/geolocation";
+import { packageLog } from "./package-log.js";
 
 export async function insertPosition<TDeepClient extends DeepClientInstance>(
   this: GeolocationDecorator<TDeepClient>,
   options: InsertPositionOptions,
 ): InsertPositionResult {
-  const log = debug(
-    `@deep-foundation/capacitor-geolocation:${insertPosition.name}`,
-  );
+  const log = packageLog.extend(insertPosition.name);
   log({ options });
   const { position, containerLinkId, id } = options;
   const insertOperations = await this.makePositionInsertOperations({
