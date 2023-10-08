@@ -1,7 +1,7 @@
 {
   "package": {
     "name": "@deep-foundation/capacitor-geolocation",
-    "version": "8.0.0-dev.14"
+    "version": "8.0.0-dev.15"
   },
   "data": [
     {
@@ -21,7 +21,7 @@
     {
       "package": {
         "dependencyId": 1,
-        "containValue": "UpdateHandler"
+        "containValue": "updateHandler"
       },
       "id": 3
     },
@@ -40,27 +40,6 @@
       "id": 5
     },
     {
-      "package": {
-        "dependencyId": 0,
-        "containValue": "Number"
-      },
-      "id": 6
-    },
-    {
-      "package": {
-        "dependencyId": 0,
-        "containValue": "Tree"
-      },
-      "id": 7
-    },
-    {
-      "package": {
-        "dependencyId": 0,
-        "containValue": "TreeIncludeFromCurrent"
-      },
-      "id": 8
-    },
-    {
       "id": "Position",
       "type": 1
     },
@@ -75,166 +54,6 @@
       "type": 4,
       "from": "Position",
       "to": 5
-    },
-    {
-      "id": "Timestamp",
-      "type": 1,
-      "from": "Position",
-      "to": "Position"
-    },
-    {
-      "id": "timestampValue",
-      "type": 4,
-      "from": "Timestamp",
-      "to": 6
-    },
-    {
-      "id": "PositionTree",
-      "type": 7
-    },
-    {
-      "id": "SpeedValue",
-      "type": 4,
-      "from": "Speed",
-      "to": 6
-    },
-    {
-      "id": "Speed",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentSpeed",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "Speed"
-    },
-    {
-      "id": "HeadingValue",
-      "type": 4,
-      "from": "Heading",
-      "to": 6
-    },
-    {
-      "id": "Heading",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentHeading",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "Heading"
-    },
-    {
-      "id": "AccuracyValue",
-      "type": 4,
-      "from": "Accuracy",
-      "to": 6
-    },
-    {
-      "id": "Accuracy",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentAccuracy",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "Accuracy"
-    },
-    {
-      "id": "AltitudeValue",
-      "type": 4,
-      "from": "Altitude",
-      "to": 6
-    },
-    {
-      "id": "Altitude",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentAltitude",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "Altitude"
-    },
-    {
-      "id": "LatitudeValue",
-      "type": 4,
-      "from": "Latitude",
-      "to": 6
-    },
-    {
-      "id": "Latitude",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentLatitude",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "Latitude"
-    },
-    {
-      "id": "LongitudeValue",
-      "type": 4,
-      "from": "Longitude",
-      "to": 6
-    },
-    {
-      "id": "Longitude",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentLongitude",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "Longitude"
-    },
-    {
-      "id": "AltitudeAccuracyValue",
-      "type": 4,
-      "from": "AltitudeAccuracy",
-      "to": 6
-    },
-    {
-      "id": "AltitudeAccuracy",
-      "type": 1,
-      "from": "Coords",
-      "to": "Coords"
-    },
-    {
-      "id": "TreeIncludeFromCurrentAltitudeAccuracy",
-      "type": 8,
-      "from": "PositionTree",
-      "to": "AltitudeAccuracy"
-    },
-    {
-      "id": "Coords",
-      "type": 1,
-      "from": "Position",
-      "to": "Position"
-    },
-    {
-      "id": "handleUpdateCoords",
-      "type": 2,
-      "from": "Coords",
-      "to": 3
-    },
-    {
-      "id": "coordsValue",
-      "type": 4,
-      "from": "Coords",
-      "to": 5
     }
   ],
   "errors": [],
@@ -244,8 +63,8 @@
       "version": "0.0.2"
     },
     {
-      "name": "@freephoenix888/object-to-links-async-converter",
-      "version": "0.0.10"
+      "name": "@deep-foundation/object-to-links-async-converter",
+      "version": "0.0.1-dev.4"
     }
   ]
 }
