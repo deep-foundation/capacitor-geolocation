@@ -5,6 +5,7 @@ import {
 } from "@capacitor/geolocation";
 import debug from "debug";
 import { PermissionStatus } from "./permission-status.js";
+import { emitter } from "./emitter.js";
 
 export async function requestPermissions(): RequestPermissionsResult {
   const log = debug(
@@ -12,6 +13,7 @@ export async function requestPermissions(): RequestPermissionsResult {
   );
   const permissionsStatus = await Geolocation.requestPermissions();
   log({ permissionsStatus });
+  emitter.emit("permissionsChanged", permissionsStatus);
   return permissionsStatus;
 }
 

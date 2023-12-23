@@ -34,7 +34,8 @@
     "@deep-foundation/object-to-links-async-converter": "~0.0.1-dev.4",
     "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0",
     "@freephoenix888/object-to-links-async-converter": "~0.0.10",
-    "debug": "^4.3.4"
+    "debug": "^4.3.4",
+    "mitt": "^3.0.1"
   },
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",

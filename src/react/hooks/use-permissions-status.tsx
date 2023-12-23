@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { checkPermissions } from "../../check-permissions.js";
 import { PermissionStatus } from "../../permission-status.js";
 import { App } from "@capacitor/app"; // Make sure to import the App from capacitor.
+import { emitter } from "../../emitter.js";
 
 export function usePermissionsStatus(): UsePermissionsStatusResult {
   const [permissionsStatus, setPermissionsStatus] = useState<
@@ -19,9 +20,15 @@ export function usePermissionsStatus(): UsePermissionsStatusResult {
     updatePermissionsStatus();
 
     const resumeListener = App.addListener("resume", updatePermissionsStatus);
+    const permissionsChangedListener = emitter.on(
+      "permissionsChanged",
+      (permissionsStatus: PermissionStatus) =>
+        setPermissionsStatus(permissionsStatus),
+    );
 
     return () => {
       resumeListener.then((resumeListener) => resumeListener.remove());
+      emitter.off("permissionsChanged", permissionsChangedListener);
     };
   }, []);
 
