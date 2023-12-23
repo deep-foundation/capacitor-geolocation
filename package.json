@@ -3,7 +3,7 @@
   "keywords": [
     "deep-package"
   ],
-  "version": "8.0.0-dev.15",
+  "version": "8.0.0-dev.16",
   "description": "A deep package that provides links based on @capacitor/geolocation and typescript library to simplify integration with this deep package",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "./deep.json"
   ],
   "dependencies": {
-    "@deep-foundation/core": "^0.0.2",
+    "@deep-foundation/core": "~0.0.2",
     "@deep-foundation/object-to-links-async-converter": "~0.0.1-dev.4",
     "@freephoenix888/deepclient-extensions": "^1.0.0-dev.0",
     "@freephoenix888/object-to-links-async-converter": "~0.0.10",
