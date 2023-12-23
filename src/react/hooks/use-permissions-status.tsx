@@ -9,11 +9,11 @@ export function usePermissionsStatus(): UsePermissionsStatusResult {
   >(undefined);
   const [isLoading, setIsLoading] = useState(true);
 
-  const updatePermissionsStatus = async () => {
+  async function updatePermissionsStatus() {
     const permissionsStatus = await checkPermissions();
     setPermissionsStatus(permissionsStatus);
     setIsLoading(false);
-  };
+  }
 
   useEffect(() => {
     updatePermissionsStatus();
@@ -28,10 +28,12 @@ export function usePermissionsStatus(): UsePermissionsStatusResult {
   return {
     permissionsStatus,
     isLoading,
+    updatePermissionsStatus,
   };
 }
 
 export type UsePermissionsStatusResult = {
   permissionsStatus: PermissionStatus | undefined;
   isLoading: boolean;
+  updatePermissionsStatus: () => void;
 };
