@@ -3,8 +3,10 @@ import { checkPermissions } from "../../check-permissions.js";
 import { PermissionStatus } from "../../permission-status.js";
 import { App } from "@capacitor/app"; // Make sure to import the App from capacitor.
 import { emitter } from "../../emitter.js";
+import { packageLog } from "../../package-log.js";
 
 export function usePermissionsStatus(): UsePermissionsStatusResult {
+  const log = packageLog.extend(usePermissionsStatus.name);
   const [permissionsStatus, setPermissionsStatus] = useState<
     PermissionStatus | undefined
   >(undefined);
@@ -22,8 +24,10 @@ export function usePermissionsStatus(): UsePermissionsStatusResult {
     const resumeListener = App.addListener("resume", updatePermissionsStatus);
     const permissionsChangedListener = emitter.on(
       "permissionsChanged",
-      (permissionsStatus: PermissionStatus) =>
-        setPermissionsStatus(permissionsStatus),
+      (permissionsStatus: PermissionStatus) => {
+        log(`permissionsChanged event received`, permissionsStatus);
+        setPermissionsStatus(permissionsStatus);
+      },
     );
 
     return () => {
