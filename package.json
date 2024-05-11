@@ -3,7 +3,7 @@
   "keywords": [
     "deep-package"
   ],
-  "version": "8.0.0-dev.22",
+  "version": "8.0.0-dev.23",
   "description": "A deep package that provides links based on @capacitor/geolocation and typescript library to simplify integration with this deep package",
   "repository": {
     "type": "git",
@@ -56,7 +56,7 @@
     "@capacitor/device": "~5.0.6",
     "@capacitor/geolocation": "~5.0.6",
     "@chakra-ui/react": "*",
-    "@deep-foundation/deeplinks": "~0.0.291",
+    "@deep-foundation/deeplinks": "*",
     "react": "*"
   },
   "lint-staged": {
